@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:background="@color/white" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:layout_alignParentTop="true" app:contentInsetLeft="0dp" app:contentInsetStart="0dp" app:contentInsetStartWithNavigation="0dp" app:layout_scrollFlags="11" app:popupTheme="@style/AppTheme.PopupOverlay">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/back" android:layout_width="wrap_content" android:layout_height="match_parent">
+            <ImageView android:layout_gravity="center_vertical" android:background="@drawable/back_light" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_10"/>
+            <TextView android:textSize="@dimen/textSize_12" android:textColor="#212121" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_10" android:text="back" android:fontFamily="@font/lato_regular"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <View android:background="@color/grayLineColor" android:layout_width="match_parent" android:layout_height="1dp" android:layout_below="@+id/toolbar"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/mint_logo"/>
+        <TextView android:textSize="@dimen/textSize_18" android:textColor="#212121" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/height_40" android:text="Choose an account" android:fontFamily="@font/lato_bold"/>
+        <LinearLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/height_40">
+            <LinearLayout android:id="@+id/google_btn" android:background="@drawable/button_login" android:paddingLeft="37dp" android:paddingTop="@dimen/padding_10" android:paddingRight="37dp" android:paddingBottom="@dimen/padding_10" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <ImageView android:layout_gravity="center_vertical" android:background="@drawable/google" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:textColor="#757575" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/padding_10" android:text="Google" android:fontFamily="@font/lato_bold"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/facebook_btn" android:background="@drawable/button_login" android:paddingLeft="37dp" android:paddingTop="@dimen/padding_10" android:paddingRight="37dp" android:paddingBottom="@dimen/padding_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp">
+                <ImageView android:layout_gravity="center_vertical" android:background="@drawable/facebook" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:textColor="#3a5998" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/padding_10" android:text="Facebook" android:fontFamily="@font/lato_bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

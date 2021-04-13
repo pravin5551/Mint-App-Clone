@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:id="@+id/drawer_layout" android:fitsSystemWindows="true" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:layout_width="match_parent" android:layout_height="match_parent" layout="@layout/app_bar_home"/>
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/layoutClose" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+        <FrameLayout android:orientation="vertical" android:id="@+id/closeFrameLayout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="65dp">
+            <Button android:id="@+id/viewClose" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="10dp" android:text="@string/close_button"/>
+            <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:id="@+id/layoutCloseButton" android:background="@drawable/close_button_shape" android:paddingLeft="20dp" android:paddingTop="7dp" android:paddingRight="20dp" android:paddingBottom="7dp" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <ImageView android:layout_gravity="center" android:id="@+id/imgViewCloseCross" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1dp" android:src="@drawable/ic_close_cross"/>
+                <TextView android:textSize="@dimen/textSize_14" android:textColor="@color/white" android:layout_gravity="center" android:id="@+id/txtViewClose" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:text="@string/close_button" android:fontFamily="@font/lato_bold"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
