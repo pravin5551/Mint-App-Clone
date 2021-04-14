@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homefragment"
+        android:title="Home"
+        android:icon="@drawable/home_inactive"/>
+
+    <item android:id="@+id/latestfragment"
+        android:title="Latest"
+        android:icon="@drawable/latest_inactive"/>
+
+    <item android:id="@+id/trending"
+        android:title="Trending"
+        android:icon="@drawable/trend"/>
+
+    <item android:id="@+id/premiumfragment"
+        android:title="Premium"
+        android:icon="@drawable/premium_inactive"/>
+
+    <item android:id="@+id/explorefragment"
+        android:title="Explore"
+        android:icon="@drawable/explore_inactive"/>
+
+</menu>
