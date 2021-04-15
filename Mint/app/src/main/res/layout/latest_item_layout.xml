@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_7"
+    android:layout_height="140dp">
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/latestNewsIv"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dp_20"
+            android:scaleType="fitXY" />
+
+
+        <ImageView
+            android:id="@+id/latestNewsSaveBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_105"
+            android:layout_toLeftOf="@id/latestNewsIv"
+            android:src="@drawable/ic_small_bookmark" />
+
+        <ImageView
+            android:id="@+id/latestNewsSavedBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_105"
+            android:layout_toLeftOf="@id/latestNewsIv"
+            android:src="@drawable/ic_bookmark__1_"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/latestNewsTv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_70"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_toLeftOf="@id/latestNewsSaveBookmark"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/latestNewsDate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_below="@+id/latestNewsTv"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_toLeftOf="@id/latestNewsSaveBookmark"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

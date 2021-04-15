@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/news_nav_graph"
+    app:startDestination="@id/homefragment">
+
+    <fragment
+        android:id="@+id/homefragment"
+        android:name="com.nero.mint.fragments.HomeFragment"
+        android:label="TodayNewsFragments" >
+        <action
+            android:id="@+id/action_todayNewsFragments_to_weeklyNewsFragments"
+            app:destination="@id/latestfragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_todayNewsFragments_to_savedNewsFragments"
+            app:destination="@id/trending"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_todayNewsFragments_to_searchNewsFragments"
+            app:destination="@id/premiumfragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_todayNewsFragments_to_settingsFragments"
+            app:destination="@id/explorefragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/latestfragment"
+        android:name="com.nero.mint.fragments.LatestFragment"
+        android:label="WeeklyNewsFragments" />
+    <fragment
+        android:id="@+id/trending"
+        android:name="com.nero.mint.fragments.TrendingFragment"
+        android:label="SavedNewsFragments" />
+    <fragment
+        android:id="@+id/premiumfragment"
+        android:name="com.nero.mint.fragments.PremiumFragment"
+        android:label="SearchNewsFragments" />
+    <fragment
+        android:id="@+id/explorefragment"
+        android:name="com.nero.mint.fragments.ExploreFragment"
+        android:label="SettingsFragments" />
+</navigation>
