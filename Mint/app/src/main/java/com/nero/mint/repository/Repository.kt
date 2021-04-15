@@ -17,6 +17,8 @@ class Repository {
     val apiKey = "0b43be1f3dc84b2492d6691164b3edac"
     val sortBy="Popularity"
     val from ="recent"
+    val qlatest = "latest"
+
 
     val buttons = Buttons()
 
@@ -42,7 +44,27 @@ class Repository {
     }
 
 
+    suspend fun callLatestNews(): RetrofitNetworkRequestHandler.Resource<NewsResponse> {
 
+        val result = apiClient.latestNews(Content_type,apiKey,qlatest)
+
+        try {
+
+            return handler.handleSuccess(result)
+
+        } catch (e: Exception) {
+
+            return handler.handleException(e)
+        }
+
+    }
 
 
 }
+
+
+
+
+//https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=0b43be1f3dc84b2492d6691164b3edac
+
+//https://newsapi.org/v2/everything?q=latest&apiKey=0b43be1f3dc84b2492d6691164b3edac

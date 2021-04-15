@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/e_paperTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:text="back"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    />
+
+
+                <TextView
+                    android:id="@+id/mintTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="mint"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/sp_30"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_15"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:fontFamily="@font/lato_black"
+        android:textColor="@color/black"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login or Register"
+        android:fontFamily="@font/lato_black"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/sp_25"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:background="@drawable/rect_round"
+            android:id="@+id/btnGoogle"
+            android:layout_margin="@dimen/dp_20"
+            android:drawableStart="@drawable/ic_flat_color_icons_google"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:text="@string/continue_with_google"
+
+            android:textAllCaps="false"
+
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:background="@drawable/rect_facebook_bg"
+            android:id="@+id/btnFacebook"
+            android:layout_margin="@dimen/dp_20"
+            android:drawableStart="@drawable/ic_facebook"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:text="@string/continue_with_facebook"
+            android:textAllCaps="false"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:background="@drawable/rect_apple_bg"
+            android:id="@+id/btnPhoneNumber"
+            android:layout_margin="@dimen/dp_20"
+            android:drawableStart="@drawable/ic_apple_logo_night"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:text="@string/continue_with_apple"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:textSize="@dimen/sp_10"
+            android:layout_centerHorizontal="true"
+            />
+        <EditText
+            android:id="@+id/etEnterData"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_margin="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_below="@+id/tvor"
+
+            android:hint="Enter Email or Mobile Number"
+            />
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etEnterData"
+            android:layout_centerHorizontal="true"
+            android:text="Continue"
+            android:background="@drawable/rect_round_mob"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/loginbottom"
+        android:baselineAlignBottom="true"
+        />
+
+
+</LinearLayout>
