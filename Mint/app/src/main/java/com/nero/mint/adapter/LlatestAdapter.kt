@@ -34,5 +34,5 @@ class LlatestAdapter(  val articlesList: MutableList<ArticlesItem>): RecyclerVie
 class LatestViewHolder(val view: View):RecyclerView.ViewHolder(view) {
     val Image = view.findViewById<ImageView>(R.id.IvLatestNews)
     val Title = view.findViewById<TextView>(R.id.TvHeadine)
-    val Date = view.findViewById<TextView>(R.id.TvDateNews)
+    val Date = view.findViewById<TextView>(R.id.trendingNewsDate)
 }
