@@ -54,6 +54,16 @@ class MyViewModel(val respository:Repository) : ViewModel() {
     }
 
 
+    fun callLatestNews(): LiveData<RetrofitNetworkRequestHandler.Resource<NewsResponse>> {
+        return liveData(Dispatchers.IO) {
+            val result=   repository.callLatestNews()
+
+            emit(result)
+
+        }
+    }
+
+
 
     fun callPremiumApi(): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>>{
 
