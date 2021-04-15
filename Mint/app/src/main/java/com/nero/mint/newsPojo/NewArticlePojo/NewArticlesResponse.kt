@@ -35,7 +35,7 @@ data class NewArticlesResponse(
 	val newsid: Int? = null,
 
 	@field:SerializedName("regid")
-	val regid: Int? = null,
+	val regid: String? = null,
 
 	@field:SerializedName("category")
 	val category: String? = null

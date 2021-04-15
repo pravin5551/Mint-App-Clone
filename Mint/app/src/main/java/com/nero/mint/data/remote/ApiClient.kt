@@ -13,14 +13,10 @@ interface ApiClient {
     suspend fun businessNews(): NewsResponse
 
     @Headers("Accept: application/json")
-    @GET("/v2/everything")
-    suspend  fun latestNews(@Header("Content-Type")contentType: String,
-                              @Query("apiKey")apikey: String,
-                              @Query("q")category:String): NewsResponse
+    @GET("/api/latest")
+    suspend  fun latestNews(): NewsResponse
 
 
-
-}
 
     @Headers("Accept: application/json")
     @GET("/api/newarticle")
@@ -30,7 +26,12 @@ interface ApiClient {
     @Headers("Accept: application/json")
     @GET("/api/search")
     suspend  fun premiumNews(@Header("Content-Type")contentType: String,
-    @Query("categoryname") categoryname:String): PremiumResponse
+                             @Query("categoryname") categoryname:String): PremiumResponse
+
+
+
+}
+
 
 
 //https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=0b43be1f3dc84b2492d6691164b3edac

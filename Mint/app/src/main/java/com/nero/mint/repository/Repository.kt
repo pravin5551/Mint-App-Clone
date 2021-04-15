@@ -81,7 +81,7 @@ class Repository {
 
     suspend fun callLatestNews(): RetrofitNetworkRequestHandler.Resource<NewsResponse> {
 
-        val result = apiClient.latestNews(Content_type,apiKey,qlatest)
+        val result = apiClient.latestNews()
 
         try {
 
@@ -104,7 +104,7 @@ class Repository {
 
 
 
-}
+
 
 //https://newsapi.org/v2/everything?q=latest&apiKey=0b43be1f3dc84b2492d6691164b3edac
 

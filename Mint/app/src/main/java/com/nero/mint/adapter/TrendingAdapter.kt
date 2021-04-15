@@ -29,7 +29,7 @@ class TrendingAdapter(val articlesList: MutableList<NewArticlesResponse>) : Recy
         holder.apply {
 
             Title.text=articlesList[position].mainheading
-            Date.text=articlesList[position].author
+            Date.text=articlesList[position].regid
 
         }
 
