@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/homefragment"
-        android:name="com.nero.mint.Fragments.HomeFragment"
+        android:name="com.nero.mint.fragments.HomeFragment"
         android:label="TodayNewsFragments" >
         <action
             android:id="@+id/action_todayNewsFragments_to_weeklyNewsFragments"
@@ -38,18 +38,18 @@
     </fragment>
     <fragment
         android:id="@+id/latestfragment"
-        android:name="com.nero.mint.Fragments.LatestFragment"
+        android:name="com.nero.mint.fragments.LatestFragment"
         android:label="WeeklyNewsFragments" />
     <fragment
         android:id="@+id/trending"
-        android:name="com.nero.mint.Fragments.TrendingFragment"
+        android:name="com.nero.mint.fragments.TrendingFragment"
         android:label="SavedNewsFragments" />
     <fragment
         android:id="@+id/premiumfragment"
-        android:name="com.nero.mint.Fragments.PremiumFragment"
+        android:name="com.nero.mint.fragments.PremiumFragment"
         android:label="SearchNewsFragments" />
     <fragment
         android:id="@+id/explorefragment"
-        android:name="com.nero.mint.Fragments.ExploreFragment"
+        android:name="com.nero.mint.fragments.ExploreFragment"
         android:label="SettingsFragments" />
 </navigation>
