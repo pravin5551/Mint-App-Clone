@@ -41,7 +41,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="LATEST"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_30"
+                    android:textSize="@dimen/sp_18"
                     android:textStyle="bold" />
 
 
@@ -52,8 +52,8 @@
                     android:text="Sign in"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-
-                    android:textSize="@dimen/sp_15"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textSize="@dimen/sp_12"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     />
