@@ -35,8 +35,8 @@ android {
 }
 
 
-
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def jetpack_version = "2.1.0"
     def anko_version = '0.10.0'
     def arch_version = '2.2.0-alpha01'
@@ -87,5 +87,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.0'
     androidTestCompile "android.arch.core:core-testing:1.1.0"
     testImplementation 'org.robolectric:robolectric:4.0'
+
+//scrolling recycler view
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //google play services oauth
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
 
 }

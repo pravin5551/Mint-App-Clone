@@ -1,4 +1,4 @@
-package com.nero.mint.Fragments
+package com.nero.mint.fragments
 
 import androidx.fragment.app.Fragment
 import com.nero.mint.R
