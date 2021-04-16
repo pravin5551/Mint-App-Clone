@@ -94,8 +94,13 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+
+    //google play services oauth
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
     //Bottom sheet dialogue
     implementation 'com.google.android.material:material:1.1.0'
+
 
 
 }

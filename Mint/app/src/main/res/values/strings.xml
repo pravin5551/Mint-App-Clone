@@ -7,6 +7,10 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="continue_with_apple">Continue with Apple</string>
+
+    <string name="enter_email_or_mobile_number">Enter Email or Mobile Number</string>
+    <string name="mint">Mint</string>
+
     <string name="title_activity_demo">demo</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

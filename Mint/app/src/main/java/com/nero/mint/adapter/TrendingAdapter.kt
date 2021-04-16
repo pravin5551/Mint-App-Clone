@@ -4,13 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nero.mint.R
+import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 
-class TrendingAdapter(val articlesList: MutableList<NewArticlesResponse>) : RecyclerView.Adapter<TrendingViewHolder>() {
+class TrendingAdapter(val articlesList: MutableList<NewArticlesResponse>,
+val onItemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<TrendingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -24,12 +28,17 @@ class TrendingAdapter(val articlesList: MutableList<NewArticlesResponse>) : Recy
 
     override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
 
-       Glide.with(holder.Image).load(articlesList[position].image1).into(holder.Image)
+        Glide.with(holder.Image).load(articlesList[position].image1).into(holder.Image)
 
         holder.apply {
 
-            Title.text=articlesList[position].mainheading
-            Date.text=articlesList[position].regid
+            Title.text = articlesList[position].mainheading
+            Date.text = articlesList[position].regid
+            container.setOnClickListener(View.OnClickListener {
+
+                onItemClickListener.onTrendingArticleSelected(articlesList[position])
+
+            })
 
         }
 
@@ -37,7 +46,7 @@ class TrendingAdapter(val articlesList: MutableList<NewArticlesResponse>) : Recy
     }
 }
 
-class TrendingViewHolder(val view: View): RecyclerView.ViewHolder(view){
+class TrendingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 
     val Image = view.findViewById<ImageView>(R.id.trendingNewsIv)
@@ -45,8 +54,7 @@ class TrendingViewHolder(val view: View): RecyclerView.ViewHolder(view){
     val Date = view.findViewById<TextView>(R.id.trendingNewsDate)
     val SaveBookmark = view.findViewById<ImageView>(R.id.trendingNewsSaveBookmark)
     val SavedBookmark = view.findViewById<ImageView>(R.id.trendingNewsSavedBookmark)
-
-
+    val container = view.findViewById<RelativeLayout>(R.id.RlTrendingItemContainer)
 
 
 }

@@ -4,6 +4,7 @@
     android:layout_marginTop="@dimen/dp_7"
     android:layout_height="120dp">
     <RelativeLayout
+        android:id="@+id/RlLatestContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
