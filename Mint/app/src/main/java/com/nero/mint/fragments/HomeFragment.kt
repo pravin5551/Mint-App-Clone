@@ -130,8 +130,6 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
     override fun onPremiumArticleSelected(dataItem: DataItem) {
         TODO("Not yet implemented")
     }
-
-
 }
 
 

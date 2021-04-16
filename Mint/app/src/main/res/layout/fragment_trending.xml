@@ -95,8 +95,6 @@
             android:layout_height="match_parent"
             android:background="@color/light_grey_color" />
 
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 </LinearLayout>

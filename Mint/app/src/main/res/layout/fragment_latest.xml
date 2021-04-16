@@ -26,7 +26,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/lato_black"
-                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_marginLeft="@dimen/dp_18"
                     android:layout_marginTop="@dimen/dp_10"
                     android:text="e-paper"
                     android:textColor="@color/black"
