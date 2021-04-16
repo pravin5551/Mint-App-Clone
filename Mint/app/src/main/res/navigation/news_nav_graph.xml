@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/news_nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
     app:startDestination="@id/homefragment">
 
     <fragment
@@ -35,21 +37,54 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homefragment_to_buttonsViewFragment"
+            app:destination="@id/buttonsViewFragment" />
+        <action
+            android:id="@+id/action_homefragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/latestfragment"
         android:name="com.nero.mint.fragments.LatestFragment"
-        android:label="WeeklyNewsFragments" />
+        android:label="WeeklyNewsFragments" >
+        <action
+            android:id="@+id/action_latestfragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trending"
         android:name="com.nero.mint.fragments.TrendingFragment"
-        android:label="SavedNewsFragments" />
+        android:label="SavedNewsFragments" >
+        <action
+            android:id="@+id/action_trending_to_buttonsViewFragment"
+            app:destination="@id/buttonsViewFragment" />
+        <action
+            android:id="@+id/action_trending_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/premiumfragment"
         android:name="com.nero.mint.fragments.PremiumFragment"
-        android:label="SearchNewsFragments" />
+        android:label="SearchNewsFragments" >
+        <action
+            android:id="@+id/action_premiumfragment_to_buttonsViewFragment"
+            app:destination="@id/buttonsViewFragment" />
+        <action
+            android:id="@+id/action_premiumfragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/explorefragment"
         android:name="com.nero.mint.fragments.ExploreFragment"
         android:label="SettingsFragments" />
+    <fragment
+        android:id="@+id/buttonsViewFragment"
+        android:name="com.nero.mint.fragments.ButtonsViewFragment"
+        android:label="ButtonsViewFragment" />
+    <fragment
+        android:id="@+id/fullViewFragment"
+        android:name="com.nero.mint.fragments.FullViewFragment"
+        android:label="fragment_full_view"
+        tools:layout="@layout/fragment_full_view" />
 </navigation>

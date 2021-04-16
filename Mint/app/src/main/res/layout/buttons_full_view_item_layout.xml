@@ -3,45 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dp_10">
+    android:layout_marginTop="@dimen/dp_10"
+    >
 
     <LinearLayout
-        android:id="@+id/homeLlContainer"
+        android:id="@+id/buttnsFullViewLlContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/homeNewsDisplayIv"
+            android:id="@+id/buttnsFullViewDisplayIv"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
             android:layout_margin="@dimen/dp_15"
+            android:layout_height="200dp"
             android:scaleType="fitXY" />
 
         <TextView
-            android:id="@+id/homeNewsTitleTv"
+            android:id="@+id/buttnsFullViewTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
-            android:fontFamily="@font/lato_bold"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_18"
-            android:textStyle="bold" />
+            android:textSize="26sp" />
 
 
         <TextView
-            android:id="@+id/homeNewsDateTv"
+            android:id="@+id/buttnsFullViewDateTv"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_margin="@dimen/dp_15"
-            android:minLines="1"
-            android:textSize="14sp"
-            android:textStyle="italic" />
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/homeNewsDescTv"
+            android:id="@+id/buttnsFullViewDescTv"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="15dp"
@@ -58,57 +56,59 @@
 
 
             <RelativeLayout
+                android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp">
 
 
                 <ImageView
-                    android:id="@+id/homeNewsSelectBookMarkIv"
+                    android:id="@+id/buttnsFullViewSelectBookMarkIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="@dimen/dp_20"
-                    android:src="@drawable/ic_small_bookmark" />
+                    android:src="@drawable/ic_small_bookmark"/>
 
                 <ImageView
-                    android:id="@+id/homeNewsSelectedBookMarkIv"
+                    android:id="@+id/buttnsFullViewSelectedBookMarkIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="@dimen/dp_20"
-                    android:src="@drawable/ic_bookmark__1_"
-                    android:visibility="invisible" />
+                    android:src="@drawable/ic_bookmark__1_"/>
 
 
                 <ImageView
-                    android:id="@+id/homeNewsShareIv"
+                    android:id="@+id/buttnsFullViewShareIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/buttnsFullViewSelectBookMarkIv"
                     android:layout_marginRight="@dimen/dp_20"
-                    android:layout_toRightOf="@id/homeNewsSelectBookMarkIv"
-                    android:src="@drawable/ic_share__1_" />
+                    android:src="@drawable/ic_share__1_"/>
+
 
 
                 <TextView
-                    android:id="@+id/homeNewsReadMoreTv"
+                    android:id="@+id/buttnsFullViewReadMoreTv"
                     android:layout_width="wrap_content"
+                    android:layout_toLeftOf="@id/buttnsFullViewReadMoreIv"
+                    android:text="Read Full Story"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange"
                     android:layout_height="24dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_toLeftOf="@id/homeNewsReadMoreIv"
-                    android:text="Read Full Story"
-                    android:textColor="@color/orange"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <ImageView
-                    android:id="@+id/homeNewsReadMoreIv"
+                    android:id="@+id/buttnsFullViewReadMoreIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/dp_20"
-                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+
 
 
             </RelativeLayout>

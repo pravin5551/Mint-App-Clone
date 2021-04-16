@@ -95,6 +95,23 @@ class Repository {
     }
 
 
+
+    suspend fun callSearchNews(name:String): RetrofitNetworkRequestHandler.Resource<PremiumResponse> {
+
+        val result = apiClient.premiumNews(Content_type,name)
+
+        try {
+            return handler.handleSuccess(result)
+
+        } catch (e: Exception) {
+            return handler.handleException(e)
+        }
+
+    }
+
+
+
+
 }
 
 
