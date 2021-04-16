@@ -3,6 +3,7 @@ package com.nero.mint.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -18,6 +19,7 @@ import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.home_news_item_layout.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -32,12 +34,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         buttonsList = mutableListOf()
 
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
 
         val repository = Repository()
-
         val viewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
@@ -47,7 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         buttonsAdapter = ButtonsAdapter(buttonsList)
         SearchButtonsRecyclerView.adapter = buttonsAdapter
 
-
+        //for button viewModel
 
         viewModel.getButtonData().observe(requireActivity(), Observer {
 
@@ -71,10 +72,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
 
-
         })
 
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
 
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -83,11 +82,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
                 swipeRefreshLayout.isRefreshing = true
+
                 articlesList.clear()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
-
                 swipeRefreshLayout.isRefreshing = false
+
 
                 Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
             })
