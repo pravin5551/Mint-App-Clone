@@ -124,6 +124,9 @@
     <dimen name="nav_header_height">110dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimen_250">250dp</dimen>
+    <dimen name="dp_105">105dp</dimen>
+    <dimen name="dp_110">110dp</dimen>
+    <dimen name="dp_102">102dp</dimen>
 
 
 </resources>

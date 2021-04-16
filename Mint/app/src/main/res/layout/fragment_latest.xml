@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -19,7 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/e_paperTv"
+                    android:id="@+id/e_paperLatestTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -34,7 +35,7 @@
 
 
                 <TextView
-                    android:id="@+id/mintTv"
+                    android:id="@+id/latestTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -45,15 +46,13 @@
                     android:textStyle="bold" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/latestAccountIv"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
                     android:layout_alignParentRight="true"
-                    android:text="Sign in"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:src="@drawable/ic_account"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:textSize="@dimen/sp_12"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     />

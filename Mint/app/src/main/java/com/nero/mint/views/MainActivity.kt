@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val repository = (application as App).repository
+
         bottomNavigationView.setupWithNavController(newsNavHostFragment.findNavController())
     }
 }

@@ -19,6 +19,11 @@ import kotlinx.android.synthetic.main.fragment_latest.*
 
 class LatestFragment : Fragment(R.layout.fragment_latest) {
 
+
+
+
+
+
     lateinit var articlesList: MutableList<ArticlesItem>
     lateinit var viewAdapter: LlatestAdapter
     lateinit var viewModel: MyViewModel
@@ -50,6 +55,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest) {
 
         })
     }
+
 
 
 }
