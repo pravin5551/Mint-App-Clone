@@ -3,6 +3,7 @@ package com.nero.mint.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -43,8 +44,8 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
         val repository = Repository()
 
-        val ViewModelFactory = ViewModelFactory(repository)
-        viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
+        val viewModelFactory = ViewModelFactory(repository)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
 
         val GridLayoutManager = StaggeredGridLayoutManager(1, 0)
@@ -95,9 +96,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
                 swipeRefreshLayout.isRefreshing = false
             })
 
+                Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+            }
 
 
-        }
+
 
     }
 

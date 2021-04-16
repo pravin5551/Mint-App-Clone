@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:gravity="center"
-    android:layout_marginTop="@dimen/dp_7"
-    android:layout_height="wrap_content">
-<Button
-    android:id="@+id/mainRvSearchBtn"
-    android:textAllCaps="false"
-    android:textColor="@color/black"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
-    />
+    android:layout_margin="@dimen/dp_5"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/mainRvSearchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rectangle_home"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingLeft="@dimen/dp_15"
+        android:fontFamily="@font/lato_regular"
+        android:elevation="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/black"
+     />
 
 </LinearLayout>

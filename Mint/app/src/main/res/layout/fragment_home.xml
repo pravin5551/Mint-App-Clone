@@ -7,6 +7,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:background="#e0e0e0"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -34,22 +35,24 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/lato_black"
                             android:layout_marginLeft="@dimen/dp_25"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:drawableRight="@drawable/red_circle"
+                            android:fontFamily="@font/lato_black"
                             android:text="e-paper"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_16"
+
                             android:textStyle="bold" />
 
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/mintTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_vertical"
-                            android:text="Mint"
+                            android:src="@drawable/ic_livemint_logo_v2"
                             android:textColor="@color/orange"
                             android:textSize="@dimen/sp_30"
                             android:textStyle="bold" />
@@ -74,8 +77,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/SearchButtonsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_55"
-                android:background="@color/light_grey_color"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_height="50dp"
+                android:background="#e0e0e0"
                 android:gravity="center" />
 
 
@@ -93,7 +97,7 @@
             android:id="@+id/homeFragmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light_grey_color" />
+            android:background="@color/LightGrey" />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
