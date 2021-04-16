@@ -5,13 +5,13 @@
     android:gravity="center"
     android:layout_marginTop="@dimen/dp_7"
     android:layout_height="wrap_content">
-<Button
-    android:id="@+id/mainRvSearchBtn"
-    android:textAllCaps="false"
-    android:textColor="@color/black"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
-    />
+    <Button
+        android:id="@+id/premiumRvSearchBtn"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        />
 
 </LinearLayout>

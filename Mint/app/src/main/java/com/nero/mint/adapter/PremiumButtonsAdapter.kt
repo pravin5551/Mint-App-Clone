@@ -8,36 +8,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nero.mint.R
 import com.nero.mint.data.remote.OnItemClickListener
 
-class ButtonsAdapter(val buttonsList: MutableList<String>,
-val itemClickListener: OnItemClickListener) :
-    RecyclerView.Adapter<ButtonsViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonsViewHolder {
+
+class PremiumButtonsAdapter(val buttonsList: MutableList<String>,val itemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<PremiumButtonsViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PremiumButtonsViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.search_buttons_item_layout, parent, false)
-        return ButtonsViewHolder(view)
+            .inflate(R.layout.premium_search_buttons_item_layout, parent, false)
+        return PremiumButtonsViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return buttonsList.size
     }
 
-    override fun onBindViewHolder(holder: ButtonsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PremiumButtonsViewHolder, position: Int) {
         holder.NewsButton.setText(buttonsList[position])
-
         holder.NewsButton.setOnClickListener(View.OnClickListener {
 
             itemClickListener.onButtonClicked(buttonsList[position])
         })
+
 
     }
 
 
 }
 
-class ButtonsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class PremiumButtonsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 
-    val NewsButton = view.findViewById<Button>(R.id.mainRvSearchBtn)
+    val NewsButton = view.findViewById<Button>(R.id.premiumRvSearchBtn)
 
 
 }
