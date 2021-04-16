@@ -17,7 +17,6 @@ interface ApiClient {
     suspend  fun latestNews(): NewsResponse
 
 
-
     @Headers("Accept: application/json")
     @GET("/api/newarticle")
     suspend  fun trendingNews(@Header("Content-Type")contentType: String): List<NewArticlesResponse>
@@ -30,8 +29,31 @@ interface ApiClient {
 
 
 
+
 }
 
+//
+//    @Headers("Accept: application/json")
+//    @GET("/api/newarticle")
+//    suspend  fun trendingNews(@Header("Content-Type")contentType: String): List<NewArticlesResponse>
+//
+//
+//    @Headers("Accept: application/json")
+//    @GET("/api/search")
+//    suspend  fun premiumNews(@Header("Content-Type")contentType: String,
+//    @Query("categoryname") categoryname:String): PremiumResponse
+
+
+//
+//@Headers("Accept: application/json")
+//@GET("/api/newarticle")
+//suspend  fun trendingNews(@Header("Content-Type")contentType: String): List<NewArticlesResponse>
+//
+//
+//@Headers("Accept: application/json")
+//@GET("/api/search")
+//suspend  fun premiumNews(@Header("Content-Type")contentType: String,
+//                         @Query("categoryname") categoryname:String): PremiumResponse
 
 
 //https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=0b43be1f3dc84b2492d6691164b3edac

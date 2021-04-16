@@ -32,6 +32,8 @@
             android:layout_toLeftOf="@id/IvLatestNews"
             android:src="@drawable/ic_bookmark__1_"
             android:visibility="invisible" />
+
+
         <TextView
             android:id="@+id/TvHeadine"
             android:layout_width="match_parent"
@@ -44,6 +46,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/sp_15"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/trendingNewsDate"
             android:layout_width="match_parent"

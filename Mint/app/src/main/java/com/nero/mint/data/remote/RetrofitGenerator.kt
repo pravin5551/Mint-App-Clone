@@ -9,21 +9,19 @@ class RetrofitGenerator {
     fun <S> createService(serviceClass: Class<S>?): S {
         val retrofit: Retrofit = getInstance()
         return retrofit.create(serviceClass)
+
     }
 
     companion object {
-
-
         private val httpLoggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
         fun getInstance(): Retrofit {
             val retrofitBuilder = Retrofit.Builder()
-                .baseUrl("http://428684a32d3d.ngrok.io")
+                .baseUrl("http://1c0785d6257e.ngrok.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
             return retrofitBuilder.build()
         }
-
     }
 }
