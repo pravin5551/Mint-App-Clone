@@ -29,6 +29,11 @@ interface ApiClient {
                              @Query("categoryname") categoryname:String): PremiumResponse
 
 
+    @Headers("Accept: application/json")
+    @GET("/api/search")
+    suspend  fun ButtonSearch(@Header("Content-Type")contentType: String,
+                             @Query("categoryname") categoryname:String): PremiumResponse
+
 
 }
 

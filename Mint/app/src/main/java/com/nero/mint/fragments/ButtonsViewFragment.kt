@@ -1,17 +1,14 @@
 package com.nero.mint.fragments
 
 import android.os.Bundle
-import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nero.mint.R
-import com.nero.mint.adapter.LlatestAdapter
-import com.nero.mint.adapter.NewsAdapter
+import com.nero.mint.adapter.ButtonsViewAdapter
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
 import com.nero.mint.newsPojo.DataItem
@@ -19,45 +16,52 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_latest.*
+import kotlinx.android.synthetic.main.fragment_buttons_view.*
+import kotlinx.android.synthetic.main.fragment_premium.*
+
+class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClickListener {
 
 
-class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
-
-
-    lateinit var articlesList: MutableList<ArticlesItem>
-    lateinit var viewAdapter: LlatestAdapter
+    var articlesList = mutableListOf<DataItem>()
     lateinit var viewModel: MyViewModel
-    lateinit var navController: NavController
+    lateinit var viewAdapter : ButtonsViewAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = Navigation.findNavController(view)
+     var search = arguments?.getString("newsItem")!!
+
+        ButtonsViewTv.text=search
+
 
         val repository = Repository()
-        articlesList = mutableListOf()
+
         val ViewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
 
 
-        val layoutManager = LinearLayoutManager(this.context)
-        latestRecyclerview.layoutManager = layoutManager
-        viewAdapter = LlatestAdapter(articlesList, this)
-        latestRecyclerview.adapter = viewAdapter
 
 
+        val LlManager = LinearLayoutManager(this.context)
+        buttonsFullViewRecyclerview.layoutManager = LlManager
+        viewAdapter = ButtonsViewAdapter(articlesList)
+        buttonsFullViewRecyclerview.adapter = viewAdapter
 
-        viewModel.callLatestNews().observe(requireActivity(), Observer {
+
+        viewModel.callSearchButtonNews(search).observe(requireActivity(), Observer {
 
 
             articlesList.clear()
-            articlesList.addAll(it.data!!.articles)
+            articlesList.addAll(it.data?.data!!)
             viewAdapter.notifyDataSetChanged()
 
 
+
         })
+
+
+
+
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
@@ -65,11 +69,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
     override fun selected(articlesItem: ArticlesItem) {
-
-        val bundle = bundleOf("url" to articlesItem.url )
-
-        navController.navigate(R.id.action_latestfragment_to_fullViewFragment,bundle)
-
+        TODO("Not yet implemented")
     }
 
     override fun onButtonClicked(name: String) {

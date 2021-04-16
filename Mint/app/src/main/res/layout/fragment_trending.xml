@@ -74,7 +74,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/SearchButtonsTrendingRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_60"
+                android:layout_height="@dimen/dp_55"
                 android:background="@color/light_grey_color"
                 android:gravity="center" />
 

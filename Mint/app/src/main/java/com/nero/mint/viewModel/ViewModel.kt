@@ -78,6 +78,18 @@ class MyViewModel(val respository:Repository) : ViewModel() {
     }
 
 
+    fun callSearchButtonNews(name:String): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>>{
+
+        return liveData(Dispatchers.IO) {
+
+
+            val result=   repository.callSearchNews(name)
+
+            emit(result)
+
+        }
+    }
+
 
 
 
