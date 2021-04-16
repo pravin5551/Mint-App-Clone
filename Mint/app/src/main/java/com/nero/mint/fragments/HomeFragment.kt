@@ -2,6 +2,7 @@ package com.nero.mint.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -37,12 +38,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val repository = Repository()
 
-        val ViewModelFactory = ViewModelFactory(repository)
-        viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
+        val viewModelFactory = ViewModelFactory(repository)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
 
-        val GridLayoutManager = StaggeredGridLayoutManager(1, 0)
-        SearchButtonsRecyclerView.layoutManager = GridLayoutManager
+        val gridLayoutManager = StaggeredGridLayoutManager(1, 0)
+        SearchButtonsRecyclerView.layoutManager = gridLayoutManager
         buttonsAdapter = ButtonsAdapter(buttonsList)
         SearchButtonsRecyclerView.adapter = buttonsAdapter
 
@@ -87,8 +88,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewAdapter.notifyDataSetChanged()
 
                 swipeRefreshLayout.isRefreshing = false
-            })
 
+                Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+            })
 
 
         }

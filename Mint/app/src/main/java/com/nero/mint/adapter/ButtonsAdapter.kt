@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.nero.mint.R
 
-class ButtonsAdapter(val buttonsList: MutableList<String>) :
+class ButtonsAdapter(private val buttonsList: MutableList<String>) :
     RecyclerView.Adapter<ButtonsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,7 +20,7 @@ class ButtonsAdapter(val buttonsList: MutableList<String>) :
     }
 
     override fun onBindViewHolder(holder: ButtonsViewHolder, position: Int) {
-        holder.NewsButton.setText(buttonsList[position])
+        holder.NewsButton.text = buttonsList[position]
     }
 
 
