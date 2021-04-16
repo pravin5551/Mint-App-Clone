@@ -34,22 +34,24 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/lato_black"
                             android:layout_marginLeft="@dimen/dp_25"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:fontFamily="@font/lato_black"
                             android:text="e-paper"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_16"
+                            android:drawableRight="@drawable/red_circle"
+
                             android:textStyle="bold" />
 
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/mintTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_vertical"
-                            android:text="Mint"
+                           android:src="@drawable/ic_livemint_logo_v2"
                             android:textColor="@color/orange"
                             android:textSize="@dimen/sp_30"
                             android:textStyle="bold" />
@@ -74,7 +76,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/SearchButtonsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_60"
+                android:layout_height="wrap_content"
                 android:background="@color/light_grey_color"
                 android:gravity="center" />
 
