@@ -99,4 +99,8 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 
+    //circular img
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
 }

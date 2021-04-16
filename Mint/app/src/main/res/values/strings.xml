@@ -9,5 +9,7 @@
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="enter_email_or_mobile_number">Enter Email or Mobile Number</string>
     <string name="mint">Mint</string>
+    <string name="subscribe_now">Subscribe Now</string>
+    <string name="restore_purchase">Restore Purchase</string>
 
 </resources>

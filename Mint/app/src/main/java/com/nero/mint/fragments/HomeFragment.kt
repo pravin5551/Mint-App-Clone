@@ -1,10 +1,10 @@
 package com.nero.mint.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import android.widget.Toast
-import androidx.core.view.isGone
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -23,10 +23,12 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
+import com.nero.mint.views.GoogleLogin
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_news_item_layout.*
 
-class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
+
+class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     var articlesList = mutableListOf<ArticlesItem>()
     lateinit var navController: NavController
@@ -41,11 +43,8 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         buttonsList = mutableListOf()
 
-<<<<<<< HEAD
         swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
-=======
-        navController=Navigation.findNavController(view)
->>>>>>> b75294973ebff0767b30037f7487e0c0c75b2f70
+        navController = Navigation.findNavController(view)
 
         val repository = Repository()
         val viewModelFactory = ViewModelFactory(repository)
@@ -54,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
         val GridLayoutManager = StaggeredGridLayoutManager(1, 0)
         SearchButtonsRecyclerView.layoutManager = GridLayoutManager
-        buttonsAdapter = ButtonsAdapter(buttonsList,this)
+        buttonsAdapter = ButtonsAdapter(buttonsList, this)
         SearchButtonsRecyclerView.adapter = buttonsAdapter
 
         //for button viewModel
@@ -70,17 +69,18 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
         val LlManager = LinearLayoutManager(this.context)
         homeFragmentRecyclerView.layoutManager = LlManager
-        viewAdapter = NewsAdapter(articlesList,this)
+        viewAdapter = NewsAdapter(articlesList, this)
         homeFragmentRecyclerView.adapter = viewAdapter
 
 
         viewModel.callBusinessApi().observe(requireActivity(), Observer {
-
-
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.GONE
+            homeFragmentRecyclerView.visibility = View.VISIBLE
             articlesList.clear()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
-
+//            shimmer_view_container.stopShimmer()
         })
 
 
@@ -91,7 +91,9 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
             viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
                 swipeRefreshLayout.isRefreshing = true
-
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.visibility = View.GONE
+                homeFragmentRecyclerView.visibility = View.VISIBLE
                 articlesList.clear()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
@@ -99,11 +101,14 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
             })
 
 
-                Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+        }
 
 
-
+        accountIv.setOnClickListener {
+            val intent = Intent(activity, GoogleLogin::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -114,7 +119,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
     override fun selected(articlesItem: ArticlesItem) {
         val bundle = bundleOf("url" to articlesItem.url)
 
-        navController.navigate(R.id.action_homefragment_to_fullViewFragment,bundle)
+        navController.navigate(R.id.action_homefragment_to_fullViewFragment, bundle)
 
     }
 
@@ -122,7 +127,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
         val bundle = bundleOf("newsItem" to name)
 
-        navController.navigate(R.id.action_homefragment_to_buttonsViewFragment,bundle)
+        navController.navigate(R.id.action_homefragment_to_buttonsViewFragment, bundle)
 
     }
 
@@ -134,6 +139,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
         TODO("Not yet implemented")
     }
 
+    override fun onResume() {
+        super.onResume()
+        shimmerFrameLayout.startShimmer()
+
+    }
 
 }
 

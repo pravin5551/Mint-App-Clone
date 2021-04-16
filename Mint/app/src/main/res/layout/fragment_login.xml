@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/googleContainer"
-    android:orientation="vertical"
-    tools:context=".views.GoogleLogin">
+    tools:context=".Fragments.LoginFragment">
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.GoogleLogin">
 
         <androidx.cardview.widget.CardView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/dp_10">
 
                 <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
                         android:id="@+id/e_paperTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_gravity="center_vertical"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
-                        android:layout_width="wrap_content"
+                        android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
                         android:text="back"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_16" />
 
 
                     <TextView
-                        android:fontFamily="sans-serif-medium"
                         android:id="@+id/mintTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center_vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
+                        android:fontFamily="sans-serif-medium"
                         android:text="mint"
                         android:textColor="@color/orange"
                         android:textSize="@dimen/sp_30"
@@ -54,11 +52,11 @@
 
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center_vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_15"
                         android:textStyle="bold" />
@@ -70,21 +68,21 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:fontFamily="@font/lato_black"
-            android:layout_height="1dp"
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:fontFamily="@font/lato_black"
             android:textColor="@color/black" />
 
         <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:fontFamily="@font/lato_black"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/lato_black"
                 android:text="Login or Register"
                 android:textColor="@color/Black"
                 android:textSize="@dimen/sp_25"
@@ -93,43 +91,43 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
             <Button
-                android:background="@color/white"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/googleg_standard_color_18"
                 android:id="@+id/btnGoogle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_20"
-                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:drawableStart="@drawable/googleg_standard_color_18"
+                android:drawablePadding="10dp"
                 android:padding="10dp"
                 android:text="@string/continue_with_google"
                 android:textAllCaps="false" />
 
             <Button
-                android:background="@drawable/rect_facebook_bg"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_facebook"
                 android:id="@+id/btnFacebook"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_20"
-                android:layout_width="match_parent"
+                android:background="@drawable/rect_facebook_bg"
+                android:drawableStart="@drawable/ic_facebook"
+                android:drawablePadding="10dp"
                 android:padding="10dp"
                 android:text="@string/continue_with_facebook"
                 android:textAllCaps="false" />
 
             <Button
-                android:background="@drawable/rect_apple_bg"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_apple_logo_night"
                 android:id="@+id/btnPhoneNumber"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_20"
-                android:layout_width="match_parent"
+                android:background="@drawable/rect_apple_bg"
+                android:drawableStart="@drawable/ic_apple_logo_night"
+                android:drawablePadding="10dp"
                 android:padding="10dp"
                 android:text="@string/continue_with_apple"
                 android:textAllCaps="false"
@@ -138,14 +136,14 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvor"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:text="OR"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
@@ -153,33 +151,32 @@
                 android:textStyle="normal" />
 
             <EditText
-                android:gravity="center"
-                android:hint="@string/enter_email_or_mobile_number"
                 android:id="@+id/etEnterData"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
                 android:layout_below="@+id/tvor"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/dp_50"
                 android:layout_margin="@dimen/dp_18"
                 android:layout_marginTop="@dimen/dp_20"
-                android:layout_width="match_parent" />
+                android:gravity="center"
+                android:hint="@string/enter_email_or_mobile_number" />
 
             <Button
-                android:background="@drawable/rect_round_mob"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/etEnterData"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_width="170dp"
+                android:background="@drawable/rect_round_mob"
                 android:text="Continue" />
         </RelativeLayout>
 
         <ImageView
-            android:baselineAlignBottom="true"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
             android:src="@drawable/loginbottom" />
 
 
     </LinearLayout>
 
 </FrameLayout>
-

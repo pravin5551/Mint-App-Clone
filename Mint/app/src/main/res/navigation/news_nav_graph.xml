@@ -87,4 +87,19 @@
         android:name="com.nero.mint.fragments.FullViewFragment"
         android:label="fragment_full_view"
         tools:layout="@layout/fragment_full_view" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.nero.mint.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homefragment"
+            app:destination="@id/homefragment" />
+    </fragment>
+    <activity
+        android:id="@+id/googleLogin"
+        android:name="com.nero.mint.views.GoogleLogin"
+        android:label="activity_google_login"
+        tools:layout="@layout/activity_google_login" />
+
 </navigation>

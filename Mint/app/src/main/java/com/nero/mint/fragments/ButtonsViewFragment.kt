@@ -58,10 +58,6 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
 
 
         })
-
-
-
-
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
