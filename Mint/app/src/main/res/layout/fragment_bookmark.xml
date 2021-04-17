@@ -1,14 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#e0e0e0"
+    android:layout_height="wrap_content">
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.BookmarkFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+           <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_10">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/MyReadsBackTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dp_25"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
+                            android:fontFamily="@font/lato_black"
+                            android:text="back"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/myReadsTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_vertical"
+                            android:text="My Reads"
+                            android:layout_marginTop="@dimen/dp_7"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_22"
+                            android:textStyle="bold" />
+
+
+                        <ImageView
+                            android:id="@+id/myReadsAccountIv"
+                            android:layout_width="@dimen/dp_20"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_account" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myReadsButtonRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_height="50dp"
+                android:background="#e0e0e0"
+                android:gravity="center" />
+
+
+        </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvBookMarkHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bookmark"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:padding="@dimen/dp_5"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginLeft="@dimen/dp_15"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/storiesHeaderTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STORIES"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                android:textColor="@color/Black"
+                android:padding="@dimen/dp_5"/>
+
+            <TextView
+                android:id="@+id/MyReadsViewAllTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_15"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                android:textColor="@color/Orange"
+                android:padding="@dimen/dp_5"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bookMarksRecyclerView"
+            android:layout_width="match_parent"
+             android:backgroundTint="@color/white"
+            android:layout_height="@dimen/dp_300"
+            android:background="@color/LightGrey" />
+
+    <TextView
+        android:id="@+id/historyTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="History"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingRight="@dimen/dp_10"
+        android:background="@color/white"
+        android:padding="@dimen/dp_5"
+        android:textSize="@dimen/sp_18"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/savedReadsRecyclerView"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/white"
+        android:layout_height="match_parent"
+        android:background="@color/LightGrey" />
+
+
+
+</LinearLayout>
+
+
+</ScrollView>

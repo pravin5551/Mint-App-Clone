@@ -38,11 +38,37 @@ class NewsAdapter(
             Title.text = articlesList[position].title
             Description.text = articlesList[position].description
             Date.text = articlesList[position].publishedAt
-            container.setOnClickListener(View.OnClickListener {
+            Image.setOnClickListener(View.OnClickListener {
 
                 itemClickListener.selected(articlesList[position])
 
             })
+
+            readMore.setOnClickListener(View.OnClickListener {
+
+                itemClickListener.selected(articlesList[position])
+
+            })
+
+
+            select.setOnClickListener(View.OnClickListener {
+                selected.visibility=View.VISIBLE
+                select.visibility= View.INVISIBLE
+
+                itemClickListener.addBookmarks(articlesList[position])
+
+            })
+
+
+            selected.setOnClickListener(View.OnClickListener {
+                select.visibility=View.VISIBLE
+                selected.visibility= View.INVISIBLE
+
+                itemClickListener.deleteBookmarks(articlesList[position])
+
+            })
+
+
 
         }
     }
@@ -55,4 +81,7 @@ class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val Date = view.findViewById<TextView>(R.id.homeNewsDateTv)
     val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
 
+    val readMore = view.findViewById<TextView>(R.id.homeNewsReadMoreTv)
+    val select = view.findViewById<ImageView>(R.id.homeNewsSelectBookMarkIv)
+    val selected = view.findViewById<ImageView>(R.id.homeNewsSelectedBookMarkIv)
 }

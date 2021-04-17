@@ -1,18 +1,16 @@
 package com.nero.mint.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nero.mint.R
-import com.nero.mint.adapter.BookMarksShortAdapter
-import com.nero.mint.adapter.HistoryAdapter
+import com.nero.mint.adapter.BookMarksPreviewAdapter
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
@@ -24,27 +22,24 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_bookmark.*
+import kotlinx.android.synthetic.main.fragment_book_mark_preview.*
 
-class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListener {
+class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), OnItemClickListener {
+
 
     var bookmarksList = mutableListOf<BookmarkEntity>()
-    var historyList= mutableListOf<NewsArticlesEntity>()
-    lateinit var historyViewAdapter:HistoryAdapter
-    lateinit var navController: NavController
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
-    lateinit var viewModel:MyViewModel
-    lateinit var viewAdapter: BookMarksShortAdapter
+    lateinit var viewModel: MyViewModel
+    lateinit var viewAdapter: BookMarksPreviewAdapter
+    lateinit var navController:NavController
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController= Navigation.findNavController(view)
-        MyReadsViewAllTv.setOnClickListener {
 
-            navController.navigate(R.id.action_bookmarkFragment_to_bookMarkPreviewFragment)
-        }
+        navController=Navigation.findNavController(view)
 
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
@@ -55,36 +50,16 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListene
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
 
-
-        val LlManager = StaggeredGridLayoutManager(1,0)
-        bookMarksRecyclerView.layoutManager = LlManager
-        viewAdapter = BookMarksShortAdapter(bookmarksList, this)
-        bookMarksRecyclerView.adapter = viewAdapter
+        val LlManager = LinearLayoutManager(this.context)
+        bookMarksPreviewRecyclerview.layoutManager = LlManager
+        viewAdapter = BookMarksPreviewAdapter(bookmarksList, this)
+        bookMarksPreviewRecyclerview.adapter = viewAdapter
 
         viewModel.getBookmarksEntity().observe(requireActivity(), Observer {
 
             bookmarksList.clear()
             bookmarksList.addAll(it)
             viewAdapter.notifyDataSetChanged()
-
-        })
-
-
-
-
-        val llManager =LinearLayoutManager(requireContext())
-        savedReadsRecyclerView.layoutManager = llManager
-        historyViewAdapter = HistoryAdapter(historyList, this)
-        savedReadsRecyclerView.adapter = historyViewAdapter
-
-        viewModel.getNewsArticlesEntity().observe(requireActivity(), Observer {
-
-
-            historyList.clear()
-            historyList.addAll(it)
-            historyViewAdapter.notifyDataSetChanged()
-
-
 
         })
 
@@ -143,17 +118,11 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListene
 
         val bundle = bundleOf("url" to bookmarkEntity.Url)
 
-        navController.navigate(R.id.action_bookmarkFragment_to_fullViewFragment, bundle)
+        navController.navigate(R.id.action_homefragment_to_fullViewFragment, bundle)
     }
 
-
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
-
-        val bundle = bundleOf("url" to articlesEntity.Url)
-
-        navController.navigate(R.id.action_bookmarkFragment_to_fullViewFragment, bundle)
-
-
+        TODO("Not yet implemented")
     }
 
 

@@ -14,6 +14,10 @@ import com.nero.mint.R
 import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.PremiumAdapter
 import com.nero.mint.adapter.PremiumButtonsAdapter
+import com.nero.mint.data.remote.DataBase.BookmarkEntity
+import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
+import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
+import com.nero.mint.data.remote.DataBase.NewsDAO
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
 import com.nero.mint.newsPojo.DataItem
@@ -24,6 +28,9 @@ import com.nero.mint.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_premium.*
 import kotlinx.android.synthetic.main.fragment_trending.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener {
@@ -36,13 +43,19 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
     lateinit var premiumButtonsAdapter: PremiumButtonsAdapter
     lateinit var buttonsList: MutableList<String>
     lateinit var navController: NavController
+    lateinit var newsDb: NewsArticlesDataBase
+    lateinit var newsDao: NewsDAO
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
+        newsDao = newsDb.getNewsArticlesDao()
+
         navController = Navigation.findNavController(view)
         buttonsList = mutableListOf()
-        val repository = Repository()
+        val repository = Repository(newsDao)
 
         val ViewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
@@ -108,7 +121,75 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
 
         navController.navigate(R.id.action_premiumfragment_to_fullViewFragment, bundle)
 
+        val newsArticlesEntity= NewsArticlesEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
 
+        CoroutineScope(Dispatchers.IO).launch {
+
+        viewModel.addLatest(newsArticlesEntity)
+
+
+        }
+
+
+    }
+
+    override fun addBookmarks(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addBookmarks(dataItem: DataItem) {
+
+
+        val bookmarkEntity= BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            viewModel.addBookmarks(bookmarkEntity)
+
+
+        }
+
+
+    }
+
+    override fun addBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(dataItem: DataItem) {
+
+
+        val bookmarkEntity= BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            viewModel.deleteBookmarks(bookmarkEntity)
+
+
+        }
+
+
+
+    }
+
+    override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
+        TODO("Not yet implemented")
     }
 
 }
