@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nero.mint.R
 import com.nero.mint.adapter.LlatestAdapter
-import com.nero.mint.adapter.NewsAdapter
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
@@ -24,7 +23,6 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_latest.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,21 +36,11 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     lateinit var viewAdapter: LlatestAdapter
     lateinit var viewModel: MyViewModel
     lateinit var navController: NavController
-<<<<<<< HEAD
-<<<<<<< HEAD
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
-=======
-    lateinit var newsDb: NewsArticlesDataBase
-    lateinit var newsDao: NewsDAO
->>>>>>> 2c92990363b17324d805af278292841e7f1f0695
-=======
 
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
 
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -118,7 +106,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         navController.navigate(R.id.action_latestfragment_to_fullViewFragment, bundle)
 
-        val newsArticlesEntity = NewsArticlesEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val newsArticlesEntity = NewsArticlesEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -144,18 +138,16 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
         TODO("Not yet implemented")
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    override fun onResume() {
-        super.onResume()
-        shimmerFrameLayoutLatestNews.startShimmer()
-=======
-=======
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
     override fun addBookmarks(articlesItem: ArticlesItem) {
 
-        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -176,7 +168,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
 
-        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -205,15 +203,11 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
         TODO("Not yet implemented")
     }
 
-<<<<<<< HEAD
->>>>>>> 2c92990363b17324d805af278292841e7f1f0695
-=======
 
     override fun onResume() {
         super.onResume()
         shimmerFrameLayoutLatestNews.startShimmer()
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
     }
 }

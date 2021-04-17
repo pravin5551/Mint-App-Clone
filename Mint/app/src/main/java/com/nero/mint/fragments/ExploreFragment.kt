@@ -44,19 +44,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore){
 
                 }
             })
-        btnsettings.setOnClickListener { View.OnClickListener {
-            val intent = Intent(view.context, SettingsActivity::class.java)
-            view.context.startActivity(intent)
-        } }
+
 
 
     }
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 }
