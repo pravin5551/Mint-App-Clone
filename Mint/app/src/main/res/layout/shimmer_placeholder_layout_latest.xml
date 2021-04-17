@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/IvLatestNews"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_alignParentRight="true"
+        android:background="@color/colorGrey"
+        android:scaleType="fitXY"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TvHeadine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TvHeadine"
+        android:layout_width="300dp"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@color/colorGrey"
+        android:maxLines="3"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_15"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/trendingNewsDate"
+        android:layout_width="300dp"
+        android:layout_height="@dimen/dp_16"
+        android:layout_below="@+id/TvHeadine"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/colorGrey"
+        app:layout_constraintEnd_toStartOf="@+id/IvLatestNews"
+        app:layout_constraintStart_toStartOf="@+id/TvHeadine"
+        app:layout_constraintTop_toBottomOf="@+id/TvHeadine" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

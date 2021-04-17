@@ -8,15 +8,20 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.facebook.shimmer.Shimmer
 import com.nero.mint.R
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
+import kotlinx.android.synthetic.main.home_news_item_layout.*
+import org.jetbrains.anko.find
 
 
 class NewsAdapter(
     val articlesList: MutableList<ArticlesItem>,
     val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsViewHolder>() {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.home_news_item_layout, parent, false)
@@ -49,4 +54,5 @@ class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val Description = view.findViewById<TextView>(R.id.homeNewsDescTv)
     val Date = view.findViewById<TextView>(R.id.homeNewsDateTv)
     val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
+
 }

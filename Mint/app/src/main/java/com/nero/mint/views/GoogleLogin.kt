@@ -2,15 +2,16 @@ package com.nero.mint.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.nero.mint.Fragments.ProfileFragment
 import com.nero.mint.R
 import kotlinx.android.synthetic.main.activity_google_login.*
 
@@ -22,43 +23,42 @@ class GoogleLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_login)
+        lateinit var navController: NavController
 
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
 
-        // Build a GoogleSignInClient with the options specified by gso.
+
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        sign_in_button.visibility = View.VISIBLE
-        tvName.visibility = View.GONE
-        // Set the dimensions of the sign-in button.
-        // Set the dimensions of the sign-in button.
-        val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
-        signInButton.setSize(SignInButton.SIZE_STANDARD)
 
-        sign_in_button.setOnClickListener {
+
+
+        btnGoogle.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent;
             startActivityForResult(signInIntent, RC_SIGN_IN);
+
+            val acct = GoogleSignIn.getLastSignedInAccount(applicationContext)
+            if (acct != null) {
+
+//                val bundle = Bundle()
+//                val name = acct.displayName
+//                val email = acct.email
+
+                val bundle = bundleOf("name" to acct.displayName, "email" to acct.email,"photo" to acct.photoUrl.toString())
+
+                val fragment = ProfileFragment()
+                val fragmentManager: FragmentManager = supportFragmentManager
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                fragment.arguments = (bundle)
+                fragmentTransaction.replace(R.id.googleContainer, fragment,"fragment").addToBackStack("fragment").commit()
+
+            }
+
         }
 
-        //data we can get from google account
-        val acct = GoogleSignIn.getLastSignedInAccount(this)
-        if (acct != null) {
-            sign_in_button.visibility = View.GONE
-            tvName.visibility = View.VISIBLE
-            tvName.text = acct.displayName
-//            val personGivenName = acct.givenName
-//            val personFamilyName = acct.familyName
-//            val personEmail = acct.email
-//            val personId = acct.id
-            Glide.with(ivProfile).load(acct.photoUrl).into(ivProfile)
-//           ivProfile: Uri? = acct.photoUrl
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -68,33 +68,21 @@ class GoogleLogin : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            sign_in_button.visibility = View.GONE
-            if (account != null) {
-                tvName.text = account.displayName
-                Glide.with(ivProfile).load(account.photoUrl).into(ivProfile)
 
-            }
-            tvName.visibility = View.VISIBLE
-            ivProfile.visibility = View.VISIBLE
-
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            sign_in_button.visibility = View.VISIBLE
-            tvName.text = ""
-            tvName.visibility = View.GONE
-            ivProfile.visibility = View.GONE
-        }
     }
 }
 
 
-
+//  val bundle = bundleOf(
+//
+//                )
+//// set Fragmentclass Arguments
+//// set Fragmentclass Arguments
+//                val fragobj = Fragmentclass()
+//                fragobj.setArguments(bundle)
