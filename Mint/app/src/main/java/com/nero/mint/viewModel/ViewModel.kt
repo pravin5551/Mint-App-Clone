@@ -5,6 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.nero.mint.data.remote.DataBase.BookmarkEntity
+import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
+import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
 import com.nero.mint.repository.Repository
 import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
@@ -13,9 +16,9 @@ import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
 import kotlinx.coroutines.Dispatchers
 
-class MyViewModel(val respository:Repository) : ViewModel() {
+class MyViewModel( val repository:Repository) : ViewModel() {
 
-    val repository = Repository()
+
 
     var buttonsList = MutableLiveData<List<String>>()
 
@@ -91,7 +94,45 @@ class MyViewModel(val respository:Repository) : ViewModel() {
         }
     }
 
+    fun deleteBookmarks(bookmarkEntity: BookmarkEntity) {
 
+        repository.deleteBookmarks(bookmarkEntity)
+
+
+    }
+
+    fun addBookmarks(bookmarkEntity: BookmarkEntity) {
+
+
+        repository.createBookmarks(bookmarkEntity)
+
+    }
+
+    fun insertArticles(newsArticlesEntity: NewsArticlesEntity) {
+
+        repository.insertArticles(newsArticlesEntity)
+
+    }
+
+    fun addLatest(newsArticlesEntity: NewsArticlesEntity) {
+
+        repository.addLatest(newsArticlesEntity)
+
+    }
+
+
+    fun getNewsArticlesEntity():LiveData<List<NewsArticlesEntity>>{
+
+
+        return repository.getNewsArticlesEntity()
+    }
+
+
+    fun getBookmarksEntity():LiveData<List<BookmarkEntity>>{
+
+
+        return repository.getNewsBookMarksEntity()
+    }
 
 
 }
