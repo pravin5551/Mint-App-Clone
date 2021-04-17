@@ -12,7 +12,10 @@ import com.nero.mint.R
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.DataItem
 
-class PremiumAdapter(val articlesList: MutableList<DataItem>, val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<PremiumViewHolder>() {
+class PremiumAdapter(
+    val articlesList: MutableList<DataItem>,
+    val onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<PremiumViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PremiumViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,13 +33,33 @@ class PremiumAdapter(val articlesList: MutableList<DataItem>, val onItemClickLis
 
         holder.apply {
 
-            Title.text=articlesList[position].title
-            Date.text=articlesList[position].author
+            Title.text = articlesList[position].title
+            Date.text = articlesList[position].author
             container.setOnClickListener(View.OnClickListener {
 
                 onItemClickListener.onPremiumArticleSelected(articlesList[position])
 
             })
+
+            SaveBookmark.setOnClickListener(View.OnClickListener {
+
+                SavedBookmark.visibility=View.VISIBLE
+                SaveBookmark.visibility=View.INVISIBLE
+
+                onItemClickListener.addBookmarks(articlesList[position])
+
+            })
+
+            SavedBookmark.setOnClickListener(View.OnClickListener {
+
+                SaveBookmark.visibility=View.VISIBLE
+                SavedBookmark.visibility=View.INVISIBLE
+
+                onItemClickListener.deleteBookmarks(articlesList[position])
+
+
+            })
+
 
         }
 
@@ -44,7 +67,7 @@ class PremiumAdapter(val articlesList: MutableList<DataItem>, val onItemClickLis
     }
 }
 
-class PremiumViewHolder(val view: View): RecyclerView.ViewHolder(view){
+class PremiumViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 
     val Image = view.findViewById<ImageView>(R.id.premiumNewsIv)
@@ -52,9 +75,7 @@ class PremiumViewHolder(val view: View): RecyclerView.ViewHolder(view){
     val Date = view.findViewById<TextView>(R.id.premiumNewsDate)
     val SaveBookmark = view.findViewById<ImageView>(R.id.premiumNewsSaveBookmark)
     val SavedBookmark = view.findViewById<ImageView>(R.id.premiumNewsSavedBookmark)
-    val container=view.findViewById<RelativeLayout>(R.id.RlPremiumContainer)
-
-
+    val container = view.findViewById<RelativeLayout>(R.id.RlPremiumContainer)
 
 
 }

@@ -77,14 +77,41 @@
     <fragment
         android:id="@+id/explorefragment"
         android:name="com.nero.mint.fragments.ExploreFragment"
-        android:label="SettingsFragments" />
+        android:label="SettingsFragments" >
+        <action
+            android:id="@+id/action_explorefragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+    </fragment>
     <fragment
         android:id="@+id/buttonsViewFragment"
         android:name="com.nero.mint.fragments.ButtonsViewFragment"
-        android:label="ButtonsViewFragment" />
+        android:label="ButtonsViewFragment" >
+        <action
+            android:id="@+id/action_buttonsViewFragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fullViewFragment"
         android:name="com.nero.mint.fragments.FullViewFragment"
         android:label="fragment_full_view"
         tools:layout="@layout/fragment_full_view" />
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.nero.mint.fragments.BookmarkFragment"
+        android:label="BookmarkFragment" >
+        <action
+            android:id="@+id/action_bookmarkFragment_to_bookMarkPreviewFragment"
+            app:destination="@id/bookMarkPreviewFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookMarkPreviewFragment"
+        android:name="com.nero.mint.fragments.BookMarkPreviewFragment"
+        android:label="BookMarkPreviewFragment" >
+        <action
+            android:id="@+id/action_bookMarkPreviewFragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
 </navigation>

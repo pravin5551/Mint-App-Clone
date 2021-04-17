@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nero.mint.R
 import com.nero.mint.adapter.LlatestAdapter
 import com.nero.mint.adapter.NewsAdapter
+import com.nero.mint.data.remote.DataBase.BookmarkEntity
+import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
+import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
+import com.nero.mint.data.remote.DataBase.NewsDAO
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
 import com.nero.mint.newsPojo.DataItem
@@ -21,6 +25,9 @@ import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_latest.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
@@ -30,13 +37,20 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     lateinit var viewAdapter: LlatestAdapter
     lateinit var viewModel: MyViewModel
     lateinit var navController: NavController
+    lateinit var newsDb: NewsArticlesDataBase
+    lateinit var newsDao: NewsDAO
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
+        newsDao = newsDb.getNewsArticlesDao()
+
         navController = Navigation.findNavController(view)
 
-        val repository = Repository()
+        val repository = Repository(newsDao)
         articlesList = mutableListOf()
         val ViewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
@@ -70,6 +84,18 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         navController.navigate(R.id.action_latestfragment_to_fullViewFragment,bundle)
 
+        val newsArticlesEntity = NewsArticlesEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+
+            viewModel.addLatest(newsArticlesEntity)
+
+
+        }
+
+
     }
 
     override fun onButtonClicked(name: String) {
@@ -81,6 +107,58 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
     override fun onPremiumArticleSelected(dataItem: DataItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addBookmarks(articlesItem: ArticlesItem) {
+
+        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            viewModel.addBookmarks(bookmarkEntity)
+
+        }
+
+
+    }
+
+    override fun addBookmarks(dataItem: DataItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(articlesItem: ArticlesItem) {
+
+        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            viewModel.deleteBookmarks(bookmarkEntity)
+
+        }
+    }
+
+    override fun deleteBookmarks(dataItem: DataItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
         TODO("Not yet implemented")
     }
 

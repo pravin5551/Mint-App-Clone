@@ -5,4 +5,8 @@ import com.nero.mint.R
 
 
 class ExploreFragment : Fragment(R.layout.fragment_explore){
+
+
+
+
 }
