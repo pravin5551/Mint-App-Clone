@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -39,7 +40,7 @@
                             android:layout_marginTop="@dimen/dp_10"
                             android:drawableRight="@drawable/red_circle"
                             android:fontFamily="@font/lato_black"
-                            android:text="e-paper"
+                            android:text="@string/e_paper"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_16"
 
@@ -74,6 +75,7 @@
 
             </androidx.cardview.widget.CardView>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/SearchButtonsRecyclerView"
                 android:layout_width="match_parent"
@@ -92,7 +94,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:shimmer_auto_start="true">
 
         <!-- Adding 15 rows of placeholders -->
         <LinearLayout
@@ -142,8 +145,8 @@
             android:id="@+id/homeFragmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:background="@color/LightGrey" />
+            android:background="@color/LightGrey"
+            android:visibility="gone" />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

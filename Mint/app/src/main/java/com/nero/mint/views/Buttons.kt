@@ -8,15 +8,15 @@ class Buttons {
   fun buildButtonsData() : MutableList<String>{
 
 
-      Buttons.add("Elections 2021")
-      Buttons.add("Coronavirus")
-      Buttons.add("Market Dashboard")
-      Buttons.add("Long Story")
-      Buttons.add("Plain Facts")
-      Buttons.add("Coronavirus Vaccine Tracker")
-      Buttons.add("Mark To Market")
+      Buttons.add("elections")
+      Buttons.add("national")
+      Buttons.add("startup")
+      Buttons.add("world")
+      Buttons.add("entertainment")
+      Buttons.add("politics")
+      Buttons.add("automobile")
       Buttons.add("Primer")
-      Buttons.add("Podcasts")
+      Buttons.add("science")
       Buttons.add("Sports")
 
 

@@ -6,7 +6,7 @@ import com.nero.mint.newsPojo.PremiumResponse
 import retrofit2.Call
 import retrofit2.http.*
 
-interface ApiClient {
+interface  ApiClient {
 
     @Headers("Accept: application/json")
     @GET("/api/breakingnews")

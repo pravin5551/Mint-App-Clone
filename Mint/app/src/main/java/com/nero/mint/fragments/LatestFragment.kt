@@ -122,7 +122,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
 
         }
-
+        latestAccountIv.setOnClickListener {
+            navController.navigate(R.id.action_latestfragment_to_profileFragment)
+        }
 
     }
 
@@ -200,6 +202,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun shareArticle(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
 

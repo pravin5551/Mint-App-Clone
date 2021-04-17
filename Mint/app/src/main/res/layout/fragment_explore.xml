@@ -105,6 +105,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnMyRead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -146,9 +147,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:entries="@array/news"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
-                android:entries="@array/news"
                 android:text="Top Sections"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
@@ -167,9 +168,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:entries="@array/news"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
-                android:entries="@array/news"
                 android:popupBackground="@color/orange"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
@@ -235,14 +236,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
+
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:entries="@array/Money"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
-                android:entries="@array/Money"
                 android:popupBackground="@color/orange"
 
                 android:textAllCaps="false"
@@ -295,9 +297,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:entries="@array/Longue"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
-                android:entries="@array/Longue"
                 android:popupBackground="@color/orange"
 
                 android:textAllCaps="false"
@@ -473,15 +475,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="About Mint"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
 
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:textAllCaps="false"
-                />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
 
@@ -498,8 +499,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Privacy Policy"
-                android:textAllCaps="false"
-                />
+                android:textAllCaps="false" />
 
         </androidx.cardview.widget.CardView>
 
@@ -516,8 +516,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Terms of Use"
-                android:textAllCaps="false"
-                />
+                android:textAllCaps="false" />
 
         </androidx.cardview.widget.CardView>
 
@@ -534,8 +533,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Cookie Policy"
-                android:textAllCaps="false"
-                />
+                android:textAllCaps="false" />
 
         </androidx.cardview.widget.CardView>
 
@@ -552,11 +550,9 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Subscriber Agreement"
-                android:textAllCaps="false"
-                />
+                android:textAllCaps="false" />
 
         </androidx.cardview.widget.CardView>
-
 
 
         <androidx.cardview.widget.CardView
@@ -570,14 +566,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Settings"
-                android:textStyle="bold"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
-                android:textColor="@color/black"
                 android:textAllCaps="false"
-                />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>
