@@ -1,10 +1,11 @@
 package com.nero.mint.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.AdapterView
+import android.widget.ProgressBar
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -24,30 +25,29 @@ import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_buttons_view.*
-import kotlinx.android.synthetic.main.fragment_premium.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClickListener {
+class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClickListener {
 
 
     var articlesList = mutableListOf<DataItem>()
     lateinit var viewModel: MyViewModel
-    lateinit var viewAdapter : ButtonsViewAdapter
+    lateinit var viewAdapter: ButtonsViewAdapter
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
     lateinit var navController: NavController
-
+    lateinit var progressBar: ProgressBar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-     var search = arguments?.getString("newsItem")!!
+        var search = arguments?.getString("newsItem")!!
 
-        ButtonsViewTv.text=search
+        ButtonsViewTv.text = search
 
-        navController= Navigation.findNavController(view)
+        navController = Navigation.findNavController(view)
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
 
@@ -57,21 +57,20 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
 
 
-
-
         val LlManager = LinearLayoutManager(this.context)
         buttonsFullViewRecyclerview.layoutManager = LlManager
-        viewAdapter = ButtonsViewAdapter(articlesList,this)
+        viewAdapter = ButtonsViewAdapter(articlesList, this)
         buttonsFullViewRecyclerview.adapter = viewAdapter
+
 
 
         viewModel.callSearchButtonNews(search).observe(requireActivity(), Observer {
 
 
+            //Without this user can hide loader by tapping outside screen
             articlesList.clear()
             articlesList.addAll(it.data?.data!!)
             viewAdapter.notifyDataSetChanged()
-
 
 
         })
@@ -100,12 +99,17 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
         navController.navigate(R.id.action_buttonsViewFragment_to_fullViewFragment, bundle)
 
 
-        val newsArticlesEntity = NewsArticlesEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val newsArticlesEntity = NewsArticlesEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
         CoroutineScope(Dispatchers.IO).launch {
 
             viewModel.addLatest(newsArticlesEntity)
         }
-
 
 
     }
@@ -115,7 +119,13 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
     }
 
     override fun addBookmarks(dataItem: DataItem) {
-        val bookmarkEntity = BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
         CoroutineScope(Dispatchers.IO).launch {
 
             viewModel.addBookmarks(bookmarkEntity)
@@ -132,7 +142,13 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
     }
 
     override fun deleteBookmarks(dataItem: DataItem) {
-        val bookmarkEntity = BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
         CoroutineScope(Dispatchers.IO).launch {
 
             viewModel.deleteBookmarks(bookmarkEntity)
@@ -153,6 +169,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view),OnItemClick
     }
 
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun shareArticle(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
 

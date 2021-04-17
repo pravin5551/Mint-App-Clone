@@ -192,4 +192,8 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
         TODO("Not yet implemented")
     }
 
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
 }

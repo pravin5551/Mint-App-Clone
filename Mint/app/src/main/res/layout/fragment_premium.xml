@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -34,10 +33,11 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/lato_black"
                             android:layout_marginLeft="@dimen/dp_25"
                             android:layout_marginTop="@dimen/dp_10"
-                            android:text="e-paper"
+                            android:drawableRight="@drawable/red_circle"
+                            android:fontFamily="@font/lato_black"
+                            android:text="@string/e_paper"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_16"
                             android:textStyle="bold" />
@@ -50,8 +50,9 @@
                             android:layout_centerInParent="true"
                             android:layout_gravity="center_vertical"
                             android:text="Premium"
+                            android:textAllCaps="true"
                             android:textColor="@color/Black"
-                            android:textSize="@dimen/sp_26"
+                            android:textSize="@dimen/sp_18"
                             android:textStyle="bold" />
 
 

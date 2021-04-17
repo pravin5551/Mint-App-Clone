@@ -156,5 +156,9 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListene
 
     }
 
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
 
 }

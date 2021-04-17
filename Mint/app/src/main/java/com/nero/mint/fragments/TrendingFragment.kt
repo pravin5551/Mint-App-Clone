@@ -224,4 +224,8 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         TODO("Not yet implemented")
     }
 
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
 }

@@ -125,5 +125,9 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
         TODO("Not yet implemented")
     }
 
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
 
 }

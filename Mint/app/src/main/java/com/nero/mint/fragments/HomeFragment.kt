@@ -79,6 +79,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
         viewModel.getButtonData().observe(requireActivity(), Observer {
 
+
             buttonsList.clear()
             buttonsList.addAll(it)
             buttonsAdapter.notifyDataSetChanged()
@@ -239,11 +240,43 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     }
 
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(
+                Intent.EXTRA_TEXT,
+                articlesItem.title + "\n" +
+                        articlesItem.url
+            )
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+
     override fun onResume() {
         super.onResume()
         shimmerFrameLayout.startShimmer()
 
     }
+
+    override fun onStop() {
+        super.onStop()
+        shimmerFrameLayout.stopShimmer()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        shimmerFrameLayout.stopShimmer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        shimmerFrameLayout.stopShimmer()
+    }
+
+
 }
 
 
