@@ -42,10 +42,14 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
     lateinit var trendingButtonsAdapter: TrendingButtonsAdapter
     lateinit var buttonsList: MutableList<String>
     lateinit var navController: NavController
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,11 +57,27 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
 
 
     }
+<<<<<<< HEAD
+=======
+    lateinit var newsDb: NewsArticlesDataBase
+    lateinit var newsDao: NewsDAO
+>>>>>>> 2c92990363b17324d805af278292841e7f1f0695
+
+=======
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        navController = Navigation.findNavController(view)
+        buttonsList = mutableListOf()
+        val repository = Repository()
+=======
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
@@ -65,17 +85,29 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         navController = Navigation.findNavController(view)
         buttonsList = mutableListOf()
         val repository = Repository(newsDao)
+<<<<<<< HEAD
+>>>>>>> 2c92990363b17324d805af278292841e7f1f0695
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
         val ViewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeTrending)
+
+=======
+>>>>>>> 2c92990363b17324d805af278292841e7f1f0695
+=======
 
 
         swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeTrending)
 
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
         val GridLayoutManager = StaggeredGridLayoutManager(1, 0)
         SearchButtonsTrendingRecyclerView.layoutManager = GridLayoutManager
         trendingButtonsAdapter = TrendingButtonsAdapter(buttonsList, this)
@@ -108,7 +140,11 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.callTrendingApi().observe(requireActivity(), Observer {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
                 swipeRefreshLayout.isRefreshing = true
                 shrimmerDisplay()
                 articlesList.addAll(it.data!!)
@@ -123,7 +159,12 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         shimmerFrameLayoutTrendingNews.visibility = View.GONE
         trendingFragmentRecyclerView.visibility = View.VISIBLE
         articlesList.clear()
+<<<<<<< HEAD
+=======
+>>>>>>> 2c92990363b17324d805af278292841e7f1f0695
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
@@ -148,7 +189,12 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         val bundle = bundleOf("url" to newsArticlesResponse.tags)
 
         navController.navigate(R.id.action_trending_to_fullViewFragment, bundle)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
 
         val newsArticlesEntity = NewsArticlesEntity(
@@ -161,7 +207,11 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
 
         viewModel.addLatest(newsArticlesEntity)
 
+<<<<<<< HEAD
+>>>>>>> 2c92990363b17324d805af278292841e7f1f0695
+=======
 
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
     }
 
