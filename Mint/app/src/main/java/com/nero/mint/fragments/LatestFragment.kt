@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nero.mint.R
 import com.nero.mint.adapter.LlatestAdapter
 import com.nero.mint.adapter.NewsAdapter
@@ -37,8 +38,12 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     lateinit var viewAdapter: LlatestAdapter
     lateinit var viewModel: MyViewModel
     lateinit var navController: NavController
+
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
+
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,6 +60,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
         val ViewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, ViewModelFactory).get(MyViewModel::class.java)
 
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.latestSwipeRefresh)
 
         val layoutManager = LinearLayoutManager(this.context)
         latestRecyclerview.layoutManager = layoutManager
@@ -65,13 +71,32 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         viewModel.callLatestNews().observe(requireActivity(), Observer {
 
-
+            shimmerFrameLayoutLatestNews.stopShimmer()
+            shimmerFrameLayoutLatestNews.visibility = View.GONE
+            latestRecyclerview.visibility = View.VISIBLE
             articlesList.clear()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
 
 
         })
+
+        swipeRefreshLayout.setOnRefreshListener {
+
+            viewModel.callLatestNews().observe(requireActivity(), Observer {
+
+                swipeRefreshLayout.isRefreshing = true
+                shimmerFrameLayoutLatestNews.stopShimmer()
+                shimmerFrameLayoutLatestNews.visibility = View.GONE
+                latestRecyclerview.visibility = View.VISIBLE
+                articlesList.clear()
+                articlesList.addAll(it.data!!.articles)
+                viewAdapter.notifyDataSetChanged()
+                swipeRefreshLayout.isRefreshing = false
+
+
+            })
+        }
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
@@ -80,9 +105,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun selected(articlesItem: ArticlesItem) {
 
-        val bundle = bundleOf("url" to articlesItem.url )
+        val bundle = bundleOf("url" to articlesItem.url)
 
-        navController.navigate(R.id.action_latestfragment_to_fullViewFragment,bundle)
+        navController.navigate(R.id.action_latestfragment_to_fullViewFragment, bundle)
 
         val newsArticlesEntity = NewsArticlesEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
 
@@ -109,6 +134,7 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     override fun onPremiumArticleSelected(dataItem: DataItem) {
         TODO("Not yet implemented")
     }
+
 
     override fun addBookmarks(articlesItem: ArticlesItem) {
 
@@ -163,4 +189,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        shimmerFrameLayoutLatestNews.startShimmer()
+
+
+    }
 }

@@ -1,9 +1,10 @@
 package com.nero.mint.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -26,11 +27,17 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
+
 import com.nero.mint.views.App
+
+import com.nero.mint.views.GoogleLogin
+
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+
 
 class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
@@ -49,6 +56,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
 
@@ -56,6 +64,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         navController = Navigation.findNavController(view)
 
         val repository = Repository(newsDao)
+
+        buttonsList = mutableListOf()
+
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+        navController = Navigation.findNavController(view)
+
+        val repository = Repository()
+
         val viewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
@@ -65,7 +81,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         buttonsAdapter = ButtonsAdapter(buttonsList, this)
         SearchButtonsRecyclerView.adapter = buttonsAdapter
 
-
+        //for button viewModel
 
         viewModel.getButtonData().observe(requireActivity(), Observer {
 
@@ -76,6 +92,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         })
 
 
+        //manager
         val LlManager = LinearLayoutManager(this.context)
         homeFragmentRecyclerView.layoutManager = LlManager
         viewAdapter = NewsAdapter(articlesList, this)
@@ -84,15 +101,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
         viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
-
-            articlesList.clear()
+            shrimmerAndRecyclerViewVisible()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
-
-
+//            shimmer_view_container.stopShimmer()
         })
-
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
 
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -101,17 +114,30 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
                 swipeRefreshLayout.isRefreshing = true
-                articlesList.clear()
+                shrimmerAndRecyclerViewVisible()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
-
                 swipeRefreshLayout.isRefreshing = false
             })
+
 
             Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
         }
 
 
+
+        accountIv.setOnClickListener {
+            val intent = Intent(activity, GoogleLogin::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun shrimmerAndRecyclerViewVisible() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        homeFragmentRecyclerView.visibility = View.VISIBLE
+        articlesList.clear()
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
@@ -155,6 +181,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     override fun onPremiumArticleSelected(dataItem: DataItem) {
         TODO("Not yet implemented")
     }
+
 
     override fun addBookmarks(articlesItem: ArticlesItem) {
 
@@ -211,6 +238,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
         TODO("Not yet implemented")
+
+    override fun onResume() {
+        super.onResume()
+        shimmerFrameLayout.startShimmer()
+
     }
 
 
