@@ -52,8 +52,11 @@ class ExploreFragment : Fragment(R.layout.fragment_explore){
 
     }
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 }

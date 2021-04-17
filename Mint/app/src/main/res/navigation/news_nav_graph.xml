@@ -96,6 +96,10 @@
         android:label="fragment_full_view"
         tools:layout="@layout/fragment_full_view" />
     <fragment
+<<<<<<< HEAD
+=======
+
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
         android:id="@+id/bookmarkFragment"
         android:name="com.nero.mint.fragments.BookmarkFragment"
         android:label="BookmarkFragment" >
@@ -114,7 +118,11 @@
             android:id="@+id/action_bookMarkPreviewFragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
     </fragment>
+<<<<<<< HEAD
     <fragment
+=======
+
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
         android:id="@+id/profileFragment"
         android:name="com.nero.mint.Fragments.ProfileFragment"
         android:label="fragment_profile"
@@ -129,4 +137,8 @@
         android:label="activity_google_login"
         tools:layout="@layout/activity_google_login" />
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 </navigation>
