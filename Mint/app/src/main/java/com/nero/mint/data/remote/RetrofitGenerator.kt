@@ -19,7 +19,7 @@ class RetrofitGenerator {
 
         fun getInstance(): Retrofit {
             val retrofitBuilder = Retrofit.Builder()
-                .baseUrl("http://1c0785d6257e.ngrok.io")
+                .baseUrl("http://06c383e4bd33.ngrok.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
             return retrofitBuilder.build()

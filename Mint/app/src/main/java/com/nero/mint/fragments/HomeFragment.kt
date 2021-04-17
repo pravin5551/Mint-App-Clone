@@ -25,7 +25,6 @@ import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
 import com.nero.mint.views.GoogleLogin
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.home_news_item_layout.*
 
 
 class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
@@ -67,6 +66,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         })
 
 
+        //manager
         val LlManager = LinearLayoutManager(this.context)
         homeFragmentRecyclerView.layoutManager = LlManager
         viewAdapter = NewsAdapter(articlesList, this)
@@ -74,15 +74,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
 
         viewModel.callBusinessApi().observe(requireActivity(), Observer {
-            shimmerFrameLayout.stopShimmer()
-            shimmerFrameLayout.visibility = View.GONE
-            homeFragmentRecyclerView.visibility = View.VISIBLE
-            articlesList.clear()
+
+            shrimmerAndRecyclerViewVisible()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
 //            shimmer_view_container.stopShimmer()
         })
-
 
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -91,10 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
                 swipeRefreshLayout.isRefreshing = true
-                shimmerFrameLayout.stopShimmer()
-                shimmerFrameLayout.visibility = View.GONE
-                homeFragmentRecyclerView.visibility = View.VISIBLE
-                articlesList.clear()
+                shrimmerAndRecyclerViewVisible()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
                 swipeRefreshLayout.isRefreshing = false
@@ -110,6 +104,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             startActivity(intent)
         }
 
+    }
+
+    private fun shrimmerAndRecyclerViewVisible() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        homeFragmentRecyclerView.visibility = View.VISIBLE
+        articlesList.clear()
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
