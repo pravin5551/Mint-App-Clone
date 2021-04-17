@@ -50,6 +50,8 @@ class Repository {
     }
 
 
+
+
     suspend fun callBusinessApi(): RetrofitNetworkRequestHandler.Resource<NewsResponse> {
 
         val result = apiClient.businessNews()
@@ -84,15 +86,13 @@ class Repository {
         val result = apiClient.latestNews()
 
         try {
-
             return handler.handleSuccess(result)
 
         } catch (e: Exception) {
-
             return handler.handleException(e)
         }
-
     }
+
 
 
 
@@ -108,7 +108,6 @@ class Repository {
         }
 
     }
-
 
 
 

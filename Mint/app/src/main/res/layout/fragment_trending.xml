@@ -141,8 +141,6 @@
             android:background="@color/light_grey_color"
             android:visibility="gone" />
 
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 </LinearLayout>

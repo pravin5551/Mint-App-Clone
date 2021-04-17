@@ -37,6 +37,8 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
     def jetpack_version = "2.1.0"
     def anko_version = '0.10.0'
     def arch_version = '2.2.0-alpha01'
@@ -92,8 +94,13 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+
     //google play services oauth
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    //Bottom sheet dialogue
+    implementation 'com.google.android.material:material:1.1.0'
+
 
     //Facebook shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
