@@ -27,29 +27,13 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-
-<<<<<<< HEAD
 import com.nero.mint.views.GoogleLogin
-
-import com.nero.mint.views.App
-
-=======
-import com.nero.mint.views.App
-
-import com.nero.mint.views.GoogleLogin
-
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     var articlesList = mutableListOf<ArticlesItem>()
@@ -67,15 +51,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-<<<<<<< HEAD
-        buttonsList = mutableListOf()
-
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
-        navController = Navigation.findNavController(view)
-
-
-=======
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
@@ -84,17 +59,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         navController = Navigation.findNavController(view)
 
         val repository = Repository(newsDao)
-<<<<<<< HEAD
-=======
 
         buttonsList = mutableListOf()
 
         swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         navController = Navigation.findNavController(view)
 
-        val repository = Repository()
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
         val viewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
@@ -143,18 +114,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
                 swipeRefreshLayout.isRefreshing = false
             })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
             Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 
         accountIv.setOnClickListener {
             val intent = Intent(activity, GoogleLogin::class.java)
@@ -178,8 +142,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     override fun selected(articlesItem: ArticlesItem) {
 
         val newsArticlesEntity = NewsArticlesEntity(
-            articlesItem.title, articlesItem.description, articlesItem.urlToImage
-            , articlesItem.publishedAt, articlesItem.url
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
         )
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -212,16 +179,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         TODO("Not yet implemented")
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    override fun onResume() {
-        super.onResume()
-        shimmerFrameLayout.startShimmer()
 
-=======
-=======
-
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
     override fun addBookmarks(articlesItem: ArticlesItem) {
 
         val bookmarkEntity = BookmarkEntity(
@@ -277,18 +235,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
         TODO("Not yet implemented")
-<<<<<<< HEAD
->>>>>>> 2c92990363b17324d805af278292841e7f1f0695
-=======
+
+
+    }
 
     override fun onResume() {
         super.onResume()
         shimmerFrameLayout.startShimmer()
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
     }
-
-
 }
 
 

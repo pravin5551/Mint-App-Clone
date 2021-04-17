@@ -79,18 +79,10 @@ class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val Title = view.findViewById<TextView>(R.id.homeNewsTitleTv)
     val Description = view.findViewById<TextView>(R.id.homeNewsDescTv)
     val Date = view.findViewById<TextView>(R.id.homeNewsDateTv)
-<<<<<<< HEAD
     val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
-=======
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
-
     val readMore = view.findViewById<TextView>(R.id.homeNewsReadMoreTv)
     val select = view.findViewById<ImageView>(R.id.homeNewsSelectBookMarkIv)
     val selected = view.findViewById<ImageView>(R.id.homeNewsSelectedBookMarkIv)
-<<<<<<< HEAD
-=======
 
-    val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
 
->>>>>>> db1c7c49574b7eb80e571de8b7a62aa55bceb15c
 }
