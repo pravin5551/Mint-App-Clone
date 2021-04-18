@@ -1,8 +1,15 @@
 package com.nero.mint.fragments
 
+import android.app.Notification
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -140,7 +147,40 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
 
 
     }
-
+//    private fun generateNotification(context: Context, message: String) {
+//        val icon: Int = R.drawable.app_icon
+//        val `when` = System.currentTimeMillis()
+//        val appname: String = context.resources.getString(R.string.app_name)
+//        val notificationManager = context
+//            .getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//        val currentapiVersion = Build.VERSION.SDK_INT
+//        val notification: Notification
+//        val contentIntent = PendingIntent.getActivity(
+//            context, 0,
+//            Intent(context, TrendingFragment::class.java), 0
+//        )
+//
+//        // To support 2.3 os, we use "Notification" class and 3.0+ os will use
+//        // "NotificationCompat.Builder" class.
+//        if (currentapiVersion < Build.VERSION_CODES.HONEYCOMB) {
+//            notification = Notification(icon, message, 0)
+//            notification.setLatestEventInfo(
+//                context, appname, message,
+//                contentIntent
+//            )
+//            notification.flags = Notification.FLAG_AUTO_CANCEL
+//            notificationManager.notify(0, notification)
+//        } else {
+//            val builder: NotificationCompat.Builder = Builder(
+//                context
+//            )
+//            notification = builder.setContentIntent(contentIntent)
+//                .setSmallIcon(icon).setTicker(appname).setWhen(0)
+//                .setAutoCancel(true).setContentTitle(appname)
+//                .setContentText(message).build()
+//            notificationManager.notify(`when`.toInt(), notification)
+//        }
+//    }
     override fun onTrendingArticleSelected(newsArticlesResponse: NewArticlesResponse) {
 
         val bundle = bundleOf("url" to newsArticlesResponse.tags)
