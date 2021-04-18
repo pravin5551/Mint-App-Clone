@@ -4,14 +4,12 @@ package com.nero.mint.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.nero.mint.R
-import com.nero.mint.views.MainActivity
 import com.nero.mint.views.SettingsActivity
+import com.nero.mint.views.WebViewActivityWallStreetJournal
 import kotlinx.android.synthetic.main.fragment_explore.*
 
 
@@ -43,11 +41,18 @@ class ExploreFragment : Fragment(R.layout.fragment_explore){
 
                 }
             })
-        btnsettings.setOnClickListener { View.OnClickListener {
+
+
+        btnWallStreetJournal.setOnClickListener(View.OnClickListener {
+            var intent2 = Intent ( context, WebViewActivityWallStreetJournal::class.java)
+            view.context.startActivity(intent2)
+        })
+
+
+        btnsettings.setOnClickListener(View.OnClickListener {
             val intent = Intent(view.context, SettingsActivity::class.java)
             view.context.startActivity(intent)
-        } }
-
+        })
 
     }
 }

@@ -122,6 +122,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnWallStreetJournal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -574,7 +575,6 @@
                 android:padding="@dimen/dp_10"
                 android:text="Settings"
                 android:textStyle="bold"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:textColor="@color/black"
                 android:textAllCaps="false"
                 />

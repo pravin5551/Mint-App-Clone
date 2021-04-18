@@ -33,7 +33,6 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = Navigation.findNavController(view)
 
         val repository = Repository()
