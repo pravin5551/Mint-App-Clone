@@ -31,6 +31,23 @@ class LlatestAdapter(  val articlesList: MutableList<ArticlesItem>,val onItemCli
 
             })
 
+            selectButton.setOnClickListener(View.OnClickListener {
+                selectedButton.visibility= View.VISIBLE
+                selectButton.visibility=View.INVISIBLE
+
+                onItemClickListener.addBookmarks(articlesList[position])
+
+            })
+
+            selectedButton.setOnClickListener(View.OnClickListener {
+
+                selectButton.visibility= View.VISIBLE
+                selectedButton.visibility=View.INVISIBLE
+
+                onItemClickListener.deleteBookmarks(articlesList[position])
+
+            })
+
         }
     }
 
@@ -41,7 +58,10 @@ class LlatestAdapter(  val articlesList: MutableList<ArticlesItem>,val onItemCli
 
 class LatestViewHolder(val view: View):RecyclerView.ViewHolder(view) {
     val Image = view.findViewById<ImageView>(R.id.IvLatestNews)
-    val Title = view.findViewById<TextView>(R.id.TvHeadine)
-    val Date = view.findViewById<TextView>(R.id.trendingNewsDate)
+    val Title = view.findViewById<TextView>(R.id.TvlatestHeadine)
+    val Date = view.findViewById<TextView>(R.id.latestNewsDate)
     val container =view.findViewById<RelativeLayout>(R.id.RlLatestContainer)
+    val selectButton = view.findViewById<ImageView>(R.id.latestNewsSaveBookmark)
+    val selectedButton = view.findViewById<ImageView>(R.id.latestNewsSavedBookmark)
+
 }

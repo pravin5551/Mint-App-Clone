@@ -2,19 +2,27 @@ package com.nero.mint.repository
 
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.nero.mint.views.Buttons
 import com.nero.mint.data.remote.ApiClient
+import com.nero.mint.data.remote.DataBase.BookmarkEntity
+import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
+import com.nero.mint.data.remote.DataBase.NewsDAO
 import com.nero.mint.data.remote.RetrofitGenerator
 import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
 
-class Repository {
+class Repository(val newsDAO: NewsDAO) {
 
 
     private var articleItem :List<NewArticlesResponse> = mutableListOf()
@@ -110,6 +118,57 @@ class Repository {
     }
 
 
+    fun deleteBookmarks(bookmarkEntity: BookmarkEntity) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            newsDAO.deleteBookmarks(bookmarkEntity)
+
+        }
+
+    }
+
+    fun createBookmarks(bookmarkEntity: BookmarkEntity) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            newsDAO.insertBookMarks(bookmarkEntity)
+
+        }
+
+
+    }
+
+    fun insertArticles(newsArticlesEntity: NewsArticlesEntity) {
+
+        newsDAO.insertArticles(newsArticlesEntity)
+
+
+    }
+
+    fun addLatest(newsArticlesEntity: NewsArticlesEntity) {
+
+
+        newsDAO.insertArticles(newsArticlesEntity)
+
+    }
+
+
+    fun getNewsArticlesEntity():LiveData<List<NewsArticlesEntity>>{
+
+
+        return newsDAO.getArticles()
+
+    }
+
+
+
+    fun getNewsBookMarksEntity():LiveData<List<BookmarkEntity>>{
+
+
+        return newsDAO.getBookmarks()
+
+    }
 
 }
 
