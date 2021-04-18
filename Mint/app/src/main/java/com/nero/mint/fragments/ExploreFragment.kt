@@ -1,6 +1,7 @@
 package com.nero.mint.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Spinner
@@ -40,8 +41,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         })
 
 
-                }
-            })
 
 
         btnWallStreetJournal.setOnClickListener(View.OnClickListener {
