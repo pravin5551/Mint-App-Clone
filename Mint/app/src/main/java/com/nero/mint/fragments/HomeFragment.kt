@@ -1,9 +1,10 @@
 package com.nero.mint.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -12,7 +13,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.nero.mint.R
 import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.NewsAdapter
@@ -27,19 +27,14 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-
-import com.nero.mint.views.App
-
 import com.nero.mint.views.GoogleLogin
-
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-
-class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
+class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     var articlesList = mutableListOf<ArticlesItem>()
     lateinit var navController: NavController
@@ -70,7 +65,6 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
         swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
         navController = Navigation.findNavController(view)
 
-        val repository = Repository()
 
         val viewModelFactory = ViewModelFactory(repository)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
@@ -84,6 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
         //for button viewModel
 
         viewModel.getButtonData().observe(requireActivity(), Observer {
+
 
             buttonsList.clear()
             buttonsList.addAll(it)
@@ -107,8 +102,6 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 //            shimmer_view_container.stopShimmer()
         })
 
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
-
 
         swipeRefreshLayout.setOnRefreshListener {
 
@@ -119,7 +112,6 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
                 shrimmerAndRecyclerViewVisible()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
-
                 swipeRefreshLayout.isRefreshing = false
             })
 
@@ -151,8 +143,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
     override fun selected(articlesItem: ArticlesItem) {
 
         val newsArticlesEntity = NewsArticlesEntity(
-            articlesItem.title, articlesItem.description, articlesItem.urlToImage
-            , articlesItem.publishedAt, articlesItem.url
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
         )
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -173,7 +168,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
         val bundle = bundleOf("newsItem" to name)
 
-        navController.navigate(R.id.action_homefragment_to_buttonsViewFragment,bundle)
+        navController.navigate(R.id.action_homefragment_to_buttonsViewFragment, bundle)
 
     }
 
@@ -242,17 +237,44 @@ class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
         TODO("Not yet implemented")
 
+
+    }
+
+    override fun shareArticle(articlesItem: ArticlesItem) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(
+                Intent.EXTRA_TEXT,
+                articlesItem.title + "\n" +
+                        articlesItem.url
+            )
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+
     override fun onResume() {
         super.onResume()
         shimmerFrameLayout.startShimmer()
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        shimmerFrameLayout.stopShimmer()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        shimmerFrameLayout.stopShimmer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        shimmerFrameLayout.stopShimmer()
+    }
+
 
 }
-
-
-
-
-
-

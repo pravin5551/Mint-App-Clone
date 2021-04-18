@@ -1,134 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/news_nav_graph"
     app:startDestination="@id/homefragment">
 
+
     <fragment
         android:id="@+id/homefragment"
         android:name="com.nero.mint.fragments.HomeFragment"
-        android:label="TodayNewsFragments" >
+        android:label="TodayNewsFragments">
+
         <action
             android:id="@+id/action_todayNewsFragments_to_weeklyNewsFragments"
             app:destination="@id/latestfragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_todayNewsFragments_to_savedNewsFragments"
             app:destination="@id/trending"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_todayNewsFragments_to_searchNewsFragments"
             app:destination="@id/premiumfragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_todayNewsFragments_to_settingsFragments"
             app:destination="@id/explorefragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_homefragment_to_buttonsViewFragment"
             app:destination="@id/buttonsViewFragment" />
+
         <action
             android:id="@+id/action_homefragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+
     </fragment>
+
+
     <fragment
         android:id="@+id/latestfragment"
         android:name="com.nero.mint.fragments.LatestFragment"
-        android:label="WeeklyNewsFragments" >
+        android:label="WeeklyNewsFragments">
+
         <action
             android:id="@+id/action_latestfragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+        <action
+            android:id="@+id/action_latestfragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
     </fragment>
+
+
+
     <fragment
         android:id="@+id/trending"
         android:name="com.nero.mint.fragments.TrendingFragment"
-        android:label="SavedNewsFragments" >
+        android:label="SavedNewsFragments">
+
         <action
             android:id="@+id/action_trending_to_buttonsViewFragment"
             app:destination="@id/buttonsViewFragment" />
+
         <action
             android:id="@+id/action_trending_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+        <action
+            android:id="@+id/action_trending_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
     </fragment>
+
+
+
     <fragment
         android:id="@+id/premiumfragment"
         android:name="com.nero.mint.fragments.PremiumFragment"
-        android:label="SearchNewsFragments" >
+        android:label="SearchNewsFragments">
+
         <action
             android:id="@+id/action_premiumfragment_to_buttonsViewFragment"
             app:destination="@id/buttonsViewFragment" />
+
         <action
             android:id="@+id/action_premiumfragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+        <action
+            android:id="@+id/action_premiumfragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
     </fragment>
+
+
+
     <fragment
         android:id="@+id/explorefragment"
         android:name="com.nero.mint.fragments.ExploreFragment"
-        android:label="SettingsFragments" >
+        android:label="SettingsFragments">
+
         <action
             android:id="@+id/action_explorefragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
+
     </fragment>
+
+
+
     <fragment
         android:id="@+id/buttonsViewFragment"
         android:name="com.nero.mint.fragments.ButtonsViewFragment"
-        android:label="ButtonsViewFragment" >
+        android:label="ButtonsViewFragment">
+
         <action
             android:id="@+id/action_buttonsViewFragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/fullViewFragment"
         android:name="com.nero.mint.fragments.FullViewFragment"
         android:label="fragment_full_view"
         tools:layout="@layout/fragment_full_view" />
-    <fragment
 
+
+
+    <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.nero.mint.fragments.BookmarkFragment"
-        android:label="BookmarkFragment" >
+        android:label="BookmarkFragment">
+
         <action
             android:id="@+id/action_bookmarkFragment_to_bookMarkPreviewFragment"
             app:destination="@id/bookMarkPreviewFragment" />
+
         <action
             android:id="@+id/action_bookmarkFragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+
     </fragment>
+
+
+
     <fragment
         android:id="@+id/bookMarkPreviewFragment"
         android:name="com.nero.mint.fragments.BookMarkPreviewFragment"
-        android:label="BookMarkPreviewFragment" >
+        android:label="BookMarkPreviewFragment">
+
         <action
             android:id="@+id/action_bookMarkPreviewFragment_to_fullViewFragment"
             app:destination="@id/fullViewFragment" />
+
     </fragment>
 
+
+
+    <fragment
         android:id="@+id/profileFragment"
         android:name="com.nero.mint.Fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
+
         <action
             android:id="@+id/action_profileFragment_to_homefragment"
             app:destination="@id/homefragment" />
+
     </fragment>
+
     <activity
         android:id="@+id/googleLogin"
         android:name="com.nero.mint.views.GoogleLogin"
         android:label="activity_google_login"
         tools:layout="@layout/activity_google_login" />
-
 
 </navigation>
