@@ -9,6 +9,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.nero.mint.R
+
+import com.nero.mint.views.SettingsActivity
+import com.nero.mint.views.WebViewActivityWallStreetJournal
+
 import kotlinx.android.synthetic.main.fragment_explore.*
 
 
@@ -35,10 +39,27 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             }
         })
 
+
+                }
+            })
+
+
+        btnWallStreetJournal.setOnClickListener(View.OnClickListener {
+            var intent2 = Intent ( context, WebViewActivityWallStreetJournal::class.java)
+            view.context.startActivity(intent2)
+        })
+
+
+        btnsettings.setOnClickListener(View.OnClickListener {
+            val intent = Intent(view.context, SettingsActivity::class.java)
+            view.context.startActivity(intent)
+        })
+
         btnMyRead.setOnClickListener {
             navController.navigate(R.id.action_explorefragment_to_bookmarkFragment)
 
         }
+
 
     }
 
