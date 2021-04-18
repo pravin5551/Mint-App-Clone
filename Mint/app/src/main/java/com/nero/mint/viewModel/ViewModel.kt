@@ -1,27 +1,22 @@
 package com.nero.mint.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
-import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
-import com.nero.mint.repository.Repository
 import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
-
 import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
+import com.nero.mint.repository.Repository
 import kotlinx.coroutines.Dispatchers
 
-class MyViewModel( val repository:Repository) : ViewModel() {
-
+class MyViewModel(val repository: Repository) : ViewModel() {
 
 
     var buttonsList = MutableLiveData<List<String>>()
-
 
 
     fun getButtonData(): MutableLiveData<List<String>> {
@@ -34,13 +29,12 @@ class MyViewModel( val repository:Repository) : ViewModel() {
     }
 
 
-
     fun callTrendingApi(): LiveData<RetrofitNetworkRequestHandler.Resource<List<NewArticlesResponse>>> {
 
         return liveData(Dispatchers.IO) {
 
 
-            val result=   repository.callTrendingApi()
+            val result = repository.callTrendingApi()
 
             emit(result)
 
@@ -50,7 +44,7 @@ class MyViewModel( val repository:Repository) : ViewModel() {
     fun callBusinessApi(): LiveData<RetrofitNetworkRequestHandler.Resource<NewsResponse>> {
 
         return liveData(Dispatchers.IO) {
-            val result=   repository.callBusinessApi()
+            val result = repository.callBusinessApi()
 
             emit(result)
 
@@ -60,7 +54,7 @@ class MyViewModel( val repository:Repository) : ViewModel() {
 
     fun callLatestNews(): LiveData<RetrofitNetworkRequestHandler.Resource<NewsResponse>> {
         return liveData(Dispatchers.IO) {
-            val result=   repository.callLatestNews()
+            val result = repository.callLatestNews()
 
             emit(result)
 
@@ -68,13 +62,12 @@ class MyViewModel( val repository:Repository) : ViewModel() {
     }
 
 
-
-    fun callPremiumApi(): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>>{
+    fun callPremiumApi(): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>> {
 
         return liveData(Dispatchers.IO) {
 
 
-            val result=   repository.callPremiumApi()
+            val result = repository.callPremiumApi()
 
             emit(result)
 
@@ -82,12 +75,12 @@ class MyViewModel( val repository:Repository) : ViewModel() {
     }
 
 
-    fun callSearchButtonNews(name:String): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>>{
+    fun callSearchButtonNews(name: String): LiveData<RetrofitNetworkRequestHandler.Resource<PremiumResponse>> {
 
         return liveData(Dispatchers.IO) {
 
 
-            val result=   repository.callSearchNews(name)
+            val result = repository.callSearchNews(name)
 
             emit(result)
 
@@ -121,14 +114,14 @@ class MyViewModel( val repository:Repository) : ViewModel() {
     }
 
 
-    fun getNewsArticlesEntity():LiveData<List<NewsArticlesEntity>>{
+    fun getNewsArticlesEntity(): LiveData<List<NewsArticlesEntity>> {
 
 
         return repository.getNewsArticlesEntity()
     }
 
 
-    fun getBookmarksEntity():LiveData<List<BookmarkEntity>>{
+    fun getBookmarksEntity(): LiveData<List<BookmarkEntity>> {
 
 
         return repository.getNewsBookMarksEntity()

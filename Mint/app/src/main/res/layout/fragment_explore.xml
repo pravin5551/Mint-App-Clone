@@ -246,7 +246,6 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:popupBackground="@color/orange"
-
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 

@@ -43,7 +43,7 @@ class NewsAdapter(
 
             readMore.setOnClickListener(View.OnClickListener {
 
-                itemClickListener.selected(articlesList[position])
+                itemClickListener?.selected(articlesList[position])
 
             })
 

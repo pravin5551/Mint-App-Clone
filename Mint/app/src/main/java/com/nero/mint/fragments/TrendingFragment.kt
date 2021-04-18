@@ -2,18 +2,17 @@ package com.nero.mint.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nero.mint.R
-import com.nero.mint.adapter.PremiumButtonsAdapter
 import com.nero.mint.adapter.TrendingAdapter
 import com.nero.mint.adapter.TrendingButtonsAdapter
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
@@ -27,9 +26,6 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_latest.*
-import kotlinx.android.synthetic.main.fragment_premium.*
 import kotlinx.android.synthetic.main.fragment_trending.*
 
 
@@ -97,7 +93,6 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         viewAdapter = TrendingAdapter(articlesList, this)
         trendingFragmentRecyclerView.adapter = viewAdapter
 
-
         viewModel.callTrendingApi().observe(requireActivity(), Observer {
 
             shrimmerDisplay()
@@ -115,13 +110,16 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
                 viewAdapter.notifyDataSetChanged()
                 swipeRefreshLayout.isRefreshing = false
             })
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+
         }
+
     }
 
     private fun shrimmerDisplay() {
-        shimmerFrameLayoutTrendingNews.stopShimmer()
-        shimmerFrameLayoutTrendingNews.visibility = View.GONE
-        trendingFragmentRecyclerView.visibility = View.VISIBLE
+        shimmerFrameLayoutTrendingNews?.stopShimmer()
+        shimmerFrameLayoutTrendingNews?.visibility = View.GONE
+        trendingFragmentRecyclerView?.visibility = View.VISIBLE
         articlesList.clear()
 
     }
@@ -150,7 +148,6 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         navController.navigate(R.id.action_trending_to_fullViewFragment, bundle)
 
 
-
         val newsArticlesEntity = NewsArticlesEntity(
             newsArticlesResponse.mainheading,
             newsArticlesResponse.content,
@@ -160,7 +157,6 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         )
 
         viewModel.addLatest(newsArticlesEntity)
-
 
 
     }

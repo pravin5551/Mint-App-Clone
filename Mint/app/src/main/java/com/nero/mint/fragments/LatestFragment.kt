@@ -2,6 +2,7 @@ package com.nero.mint.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,9 +69,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         viewModel.callLatestNews().observe(requireActivity(), Observer {
 
-            shimmerFrameLayoutLatestNews.stopShimmer()
-            shimmerFrameLayoutLatestNews.visibility = View.GONE
-            latestRecyclerview.visibility = View.VISIBLE
+            shimmerFrameLayoutLatestNews?.stopShimmer()
+            shimmerFrameLayoutLatestNews?.visibility = View.GONE
+            latestRecyclerview?.visibility = View.VISIBLE
             articlesList.clear()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
@@ -93,6 +94,8 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
 
             })
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+
         }
     }
 

@@ -24,6 +24,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="e_paper">e-paper</string>
     <string name="trending">Trending</string>
+    <string name="my_reads">My Reads</string>
+    <string name="history">History</string>
+    <string name="no_bookmarks">No Bookmarks</string>
+    <string name="no_bookmarks_available">No Bookmarks available</string>
 
     <string-array name="news">
         <item>News</item>

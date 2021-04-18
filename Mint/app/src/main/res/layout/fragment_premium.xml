@@ -85,7 +85,7 @@
     </ScrollView>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeTrending"
+        android:id="@+id/swipePremium"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

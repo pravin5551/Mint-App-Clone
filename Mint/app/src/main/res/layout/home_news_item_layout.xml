@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/dp_10">
@@ -39,7 +38,7 @@
             android:layout_height="20dp"
             android:layout_margin="@dimen/dp_15"
             android:minLines="1"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp_14"
             android:textStyle="italic" />
 
         <TextView
@@ -78,8 +77,8 @@
                     android:id="@+id/homeNewsSelectedBookMarkIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/dp_20"
                     android:src="@drawable/ic_bookmark__1_"
                     android:visibility="invisible" />
 
