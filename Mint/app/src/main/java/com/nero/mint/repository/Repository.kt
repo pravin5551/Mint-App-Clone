@@ -1,10 +1,7 @@
 package com.nero.mint.repository
 
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
-import com.nero.mint.views.Buttons
 import com.nero.mint.data.remote.ApiClient
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
@@ -14,32 +11,29 @@ import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
+import com.nero.mint.views.Buttons
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Exception
 
 class Repository(val newsDAO: NewsDAO) {
 
 
-    private var articleItem :List<NewArticlesResponse> = mutableListOf()
+    private var articleItem: List<NewArticlesResponse> = mutableListOf()
     val apiClient = RetrofitGenerator.getInstance().create(ApiClient::class.java)
     val Content_type = "application/json"
     val source = "politics"
     val handler = RetrofitNetworkRequestHandler.ResponseHandler()
     val apiKey = "0b43be1f3dc84b2492d6691164b3edac"
-    val sortBy="Popularity"
-    val from ="recent"
+    val sortBy = "Popularity"
+    val from = "recent"
     val qlatest = "latest"
 
 
     val buttons = Buttons()
 
 
-    fun getButtonsData():MutableList<String>{
+    fun getButtonsData(): MutableList<String> {
         return buttons.buildButtonsData()
     }
 
@@ -56,8 +50,6 @@ class Repository(val newsDAO: NewsDAO) {
         }
 
     }
-
-
 
 
     suspend fun callBusinessApi(): RetrofitNetworkRequestHandler.Resource<NewsResponse> {
@@ -77,7 +69,7 @@ class Repository(val newsDAO: NewsDAO) {
 
     suspend fun callPremiumApi(): RetrofitNetworkRequestHandler.Resource<PremiumResponse> {
 
-        val result = apiClient.premiumNews(Content_type,source)
+        val result = apiClient.premiumNews(Content_type, source)
 
         try {
             return handler.handleSuccess(result)
@@ -102,11 +94,9 @@ class Repository(val newsDAO: NewsDAO) {
     }
 
 
+    suspend fun callSearchNews(name: String): RetrofitNetworkRequestHandler.Resource<PremiumResponse> {
 
-
-    suspend fun callSearchNews(name:String): RetrofitNetworkRequestHandler.Resource<PremiumResponse> {
-
-        val result = apiClient.premiumNews(Content_type,name)
+        val result = apiClient.premiumNews(Content_type, name)
 
         try {
             return handler.handleSuccess(result)
@@ -141,20 +131,23 @@ class Repository(val newsDAO: NewsDAO) {
 
     fun insertArticles(newsArticlesEntity: NewsArticlesEntity) {
 
-        newsDAO.insertArticles(newsArticlesEntity)
+        CoroutineScope(Dispatchers.IO).launch {
+
+            newsDAO.insertArticles(newsArticlesEntity)
+        }
 
 
     }
 
     fun addLatest(newsArticlesEntity: NewsArticlesEntity) {
 
-
-        newsDAO.insertArticles(newsArticlesEntity)
-
+        CoroutineScope(Dispatchers.IO).launch {
+            newsDAO.insertArticles(newsArticlesEntity)
+        }
     }
 
 
-    fun getNewsArticlesEntity():LiveData<List<NewsArticlesEntity>>{
+    fun getNewsArticlesEntity(): LiveData<List<NewsArticlesEntity>> {
 
 
         return newsDAO.getArticles()
@@ -162,8 +155,7 @@ class Repository(val newsDAO: NewsDAO) {
     }
 
 
-
-    fun getNewsBookMarksEntity():LiveData<List<BookmarkEntity>>{
+    fun getNewsBookMarksEntity(): LiveData<List<BookmarkEntity>> {
 
 
         return newsDAO.getBookmarks()
@@ -173,12 +165,7 @@ class Repository(val newsDAO: NewsDAO) {
 }
 
 
-
-
 //https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=0b43be1f3dc84b2492d6691164b3edac
-
-
-
 
 
 //https://newsapi.org/v2/everything?q=latest&apiKey=0b43be1f3dc84b2492d6691164b3edac

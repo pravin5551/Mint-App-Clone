@@ -14,9 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.androidstudy.networkmanager.Monitor
 import com.androidstudy.networkmanager.Tovuti
-import com.google.android.material.snackbar.Snackbar
 import com.nero.mint.R
 import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.NewsAdapter
@@ -103,23 +101,26 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             shrimmerAndRecyclerViewVisible()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
-//            shimmer_view_container.stopShimmer()
         })
 
         //network connection check
-        Tovuti.from(context)?.monitor { connectionType, isConnected, isFast ->
-            if (isConnected) {
-                Log.d("taggg", "network is back")
-            } else {
-                Snackbar.make(
-                    view,
-                    "No Internet",
-                    Snackbar.LENGTH_SHORT
-                )
-                    .show()
-            }
-        }
 
+        try {
+            Tovuti.from(context)?.monitor { connectionType, isConnected, isFast ->
+                if (isConnected) {
+                    Log.d("taggg", "network is back")
+                } else {
+//                    Snackbar.make(
+//                        view,
+//                        "No Internet",
+//                        Snackbar.LENGTH_SHORT
+//                    )
+//                        .show()
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(activity, "Check Internet Connection", Toast.LENGTH_SHORT).show()
+        }
 
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -283,6 +284,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     override fun onStop() {
         super.onStop()
+        try {
+
+            Tovuti.from(activity).stop();
+        } catch (e: Exception) {
+
+        }
         shimmerFrameLayout?.stopShimmer()
     }
 
@@ -296,6 +303,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         shimmerFrameLayout?.stopShimmer()
     }
 
+    override fun onDestroy() {
+
+        super.onDestroy()
+    }
 
 }
 
