@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_explore.*
 
 
 class ExploreFragment : Fragment(R.layout.fragment_explore){
+
     lateinit var option :Spinner
 
 
@@ -55,4 +56,5 @@ class ExploreFragment : Fragment(R.layout.fragment_explore){
         })
 
     }
+
 }

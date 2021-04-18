@@ -34,9 +34,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/lato_black"
                             android:layout_marginLeft="@dimen/dp_25"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:fontFamily="@font/lato_black"
                             android:text="e-paper"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp_16"
@@ -83,6 +83,51 @@
 
     </ScrollView>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayoutTrendingNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <!-- Adding 15 rows of placeholders -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+
+            <include layout="@layout/shimmer_placeholder_layout_latest" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeTrending"
         android:layout_width="match_parent"
@@ -93,7 +138,8 @@
             android:id="@+id/trendingFragmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light_grey_color" />
+            android:background="@color/light_grey_color"
+            android:visibility="gone" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

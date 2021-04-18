@@ -102,4 +102,13 @@ dependencies {
     //Bottom sheet dialogue
     implementation 'com.google.android.material:material:1.1.0'
 
+
+    //Facebook shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
+    //circular img
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
 }

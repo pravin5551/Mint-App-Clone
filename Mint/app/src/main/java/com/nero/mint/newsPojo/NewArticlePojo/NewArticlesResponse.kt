@@ -8,35 +8,35 @@ import java.io.Serializable
 data class NewArticlesResponse(
 
 	@field:SerializedName("author")
-	val author: String? = null,
+	val author: String,
 
 	@field:SerializedName("mainheading")
-	val mainheading: String? = null,
+	val mainheading: String,
 
 	@field:SerializedName("subheading1")
-	val subheading1: String? = null,
+	val subheading1: String,
 
 	@field:SerializedName("frontimage")
-	val frontimage: String? = null,
+	val frontimage: String,
 
 	@field:SerializedName("image1")
-	val image1: String? = null,
+	val image1: String,
 
 	@field:SerializedName("content")
-	val content: String? = null,
+	val content: String,
 
 	@field:SerializedName("tags")
-	val tags: String? = null,
+	val tags: String,
 
 	@field:SerializedName("catid")
-	val catid: Int? = null,
+	val catid: Int,
 
 	@field:SerializedName("newsid")
-	val newsid: Int? = null,
+	val newsid: Int,
 
 	@field:SerializedName("regid")
-	val regid: String? = null,
+	val regid: String,
 
 	@field:SerializedName("category")
-	val category: String? = null
+	val category: String
 )

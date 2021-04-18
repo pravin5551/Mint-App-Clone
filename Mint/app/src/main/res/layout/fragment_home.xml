@@ -7,8 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:background="#e0e0e0"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#e0e0e0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,8 +60,8 @@
 
                         <ImageView
                             android:id="@+id/accountIv"
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center_vertical"
                             android:layout_marginTop="@dimen/dp_10"
@@ -77,8 +77,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/SearchButtonsRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/dp_10"
                 android:layout_height="50dp"
+                android:layout_marginTop="@dimen/dp_10"
                 android:background="#e0e0e0"
                 android:gravity="center" />
 
@@ -86,6 +86,51 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <!-- Adding 15 rows of placeholders -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+
+            <include layout="@layout/shimmer_placeholder_layout_home_fragment" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
@@ -97,6 +142,7 @@
             android:id="@+id/homeFragmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:background="@color/LightGrey" />
 
 

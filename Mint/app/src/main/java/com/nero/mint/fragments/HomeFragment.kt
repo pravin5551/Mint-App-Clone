@@ -16,6 +16,10 @@ import com.google.android.material.button.MaterialButtonToggleGroup
 import com.nero.mint.R
 import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.NewsAdapter
+import com.nero.mint.data.remote.DataBase.BookmarkEntity
+import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
+import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
+import com.nero.mint.data.remote.DataBase.NewsDAO
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
 import com.nero.mint.newsPojo.DataItem
@@ -23,9 +27,19 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
+import com.nero.mint.views.App
+
+import com.nero.mint.views.GoogleLogin
+
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+
+
+class HomeFragment : Fragment(R.layout.fragment_home),OnItemClickListener {
 
     var articlesList = mutableListOf<ArticlesItem>()
     lateinit var navController: NavController
@@ -35,13 +49,26 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     lateinit var buttonsAdapter: ButtonsAdapter
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     var isScrolling = false
+    lateinit var newsDb: NewsArticlesDataBase
+    lateinit var newsDao: NewsDAO
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
+        newsDao = newsDb.getNewsArticlesDao()
+
+        buttonsList = mutableListOf()
+        navController = Navigation.findNavController(view)
+
+        val repository = Repository(newsDao)
+
         buttonsList = mutableListOf()
 
-        navController=Navigation.findNavController(view)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
+        navController = Navigation.findNavController(view)
 
         val repository = Repository()
 
@@ -51,10 +78,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
         val GridLayoutManager = StaggeredGridLayoutManager(1, 0)
         SearchButtonsRecyclerView.layoutManager = GridLayoutManager
-        buttonsAdapter = ButtonsAdapter(buttonsList,this)
+        buttonsAdapter = ButtonsAdapter(buttonsList, this)
         SearchButtonsRecyclerView.adapter = buttonsAdapter
 
-
+        //for button viewModel
 
         viewModel.getButtonData().observe(requireActivity(), Observer {
 
@@ -65,16 +92,19 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         })
 
 
+        //manager
         val LlManager = LinearLayoutManager(this.context)
         homeFragmentRecyclerView.layoutManager = LlManager
-        viewAdapter = NewsAdapter(articlesList,this)
+        viewAdapter = NewsAdapter(articlesList, this)
         homeFragmentRecyclerView.adapter = viewAdapter
 
 
         viewModel.callBusinessApi().observe(requireActivity(), Observer {
-            articlesList.clear()
+
+            shrimmerAndRecyclerViewVisible()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
+//            shimmer_view_container.stopShimmer()
         })
 
         swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
@@ -86,29 +116,56 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             viewModel.callBusinessApi().observe(requireActivity(), Observer {
 
                 swipeRefreshLayout.isRefreshing = true
-                articlesList.clear()
+                shrimmerAndRecyclerViewVisible()
                 articlesList.addAll(it.data!!.articles)
                 viewAdapter.notifyDataSetChanged()
 
                 swipeRefreshLayout.isRefreshing = false
             })
 
-                Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
-            }
+
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+        }
 
 
 
+        accountIv.setOnClickListener {
+            val intent = Intent(activity, GoogleLogin::class.java)
+            startActivity(intent)
+        }
 
+    }
+
+    private fun shrimmerAndRecyclerViewVisible() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        homeFragmentRecyclerView.visibility = View.VISIBLE
+        articlesList.clear()
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
 
+
     override fun selected(articlesItem: ArticlesItem) {
+
+        val newsArticlesEntity = NewsArticlesEntity(
+            articlesItem.title, articlesItem.description, articlesItem.urlToImage
+            , articlesItem.publishedAt, articlesItem.url
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            viewModel.insertArticles(newsArticlesEntity)
+
+
+        }
+
+
         val bundle = bundleOf("url" to articlesItem.url)
 
-        navController.navigate(R.id.action_homefragment_to_fullViewFragment,bundle)
+        navController.navigate(R.id.action_homefragment_to_fullViewFragment, bundle)
 
     }
 
@@ -127,6 +184,71 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     override fun onPremiumArticleSelected(dataItem: DataItem) {
         TODO("Not yet implemented")
     }
+
+
+    override fun addBookmarks(articlesItem: ArticlesItem) {
+
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem
+                .url
+        )
+
+        viewModel.addBookmarks(bookmarkEntity)
+
+    }
+
+    override fun addBookmarks(dataItem: DataItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(articlesItem: ArticlesItem) {
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem
+                .url
+        )
+
+        viewModel.deleteBookmarks(bookmarkEntity)
+
+    }
+
+    override fun deleteBookmarks(dataItem: DataItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectBookMarkEntity(bookmarkEntity: BookmarkEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
+        TODO("Not yet implemented")
+
+    override fun onResume() {
+        super.onResume()
+        shimmerFrameLayout.startShimmer()
+
+    }
+
+
 }
 
 

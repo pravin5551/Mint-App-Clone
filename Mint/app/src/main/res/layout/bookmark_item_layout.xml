@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+       android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/BookMarkMainIv"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_150"/>
+
+    <TextView
+        android:id="@+id/bookmarkTitleTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/black"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:id="@+id/bookmarkDateTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:textSize="@dimen/sp_14"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:id="@+id/bookMarkRemoveIv"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:src="@drawable/ic_bookmark__1_"
+                android:layout_alignParentRight="true"/>
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

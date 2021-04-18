@@ -40,6 +40,28 @@ val onItemClickListener: OnItemClickListener) :
 
             })
 
+            SaveBookmark.setOnClickListener(View.OnClickListener {
+
+                SavedBookmark.visibility=View.VISIBLE
+                SaveBookmark.visibility=View.INVISIBLE
+
+                onItemClickListener.addBookmarks(articlesList[position])
+
+            })
+
+
+            SavedBookmark.setOnClickListener(View.OnClickListener {
+
+                SaveBookmark.visibility=View.VISIBLE
+                SavedBookmark.visibility=View.INVISIBLE
+
+                onItemClickListener.deleteBookmarks(articlesList[position])
+
+
+            })
+
+
+
         }
 
 
