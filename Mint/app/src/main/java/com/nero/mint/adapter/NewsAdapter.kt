@@ -35,6 +35,7 @@ class NewsAdapter(
             Title.text = articlesList[position].title
             Description.text = articlesList[position].description
             Date.text = articlesList[position].publishedAt
+
             Image.setOnClickListener(View.OnClickListener {
 
                 itemClickListener.selected(articlesList[position])
