@@ -277,23 +277,23 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     override fun onResume() {
         super.onResume()
-        shimmerFrameLayout.startShimmer()
+        shimmerFrameLayout?.startShimmer()
 
     }
 
     override fun onStop() {
         super.onStop()
-        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout?.stopShimmer()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout?.stopShimmer()
     }
 
     override fun onPause() {
         super.onPause()
-        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout?.stopShimmer()
     }
 
 
