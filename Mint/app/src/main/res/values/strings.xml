@@ -22,12 +22,16 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="email_settings">Email Settings</string>
+
     <string name="e_paper">e-paper</string>
     <string name="trending">Trending</string>
     <string name="my_reads">My Reads</string>
     <string name="history">History</string>
     <string name="no_bookmarks">No Bookmarks</string>
     <string name="no_bookmarks_available">No Bookmarks available</string>
+
 
     <string-array name="news">
         <item>News</item>
@@ -51,6 +55,22 @@
         <item>Features</item>
         <item>Business of Life</item>
     </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 
 </resources>

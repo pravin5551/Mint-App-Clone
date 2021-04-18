@@ -105,9 +105,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun selected(articlesItem: ArticlesItem) {
 
-        val bundle = bundleOf("url" to articlesItem.url)
+        val bundle = bundleOf("url" to articlesItem.url )
 
-        navController.navigate(R.id.action_latestfragment_to_fullViewFragment, bundle)
+        navController.navigate(R.id.action_latestfragment_to_fullViewFragment,bundle)
 
         val newsArticlesEntity = NewsArticlesEntity(
             articlesItem.title,

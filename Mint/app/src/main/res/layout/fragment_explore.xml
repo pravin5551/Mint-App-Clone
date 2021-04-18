@@ -123,6 +123,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnWallStreetJournal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -569,8 +570,12 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_10"
                 android:text="Settings"
+
+
                 android:textAllCaps="false"
+
                 android:textColor="@color/black"
+
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
