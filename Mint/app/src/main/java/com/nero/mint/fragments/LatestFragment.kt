@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nero.mint.R
 import com.nero.mint.adapter.LlatestAdapter
-import com.nero.mint.adapter.NewsAdapter
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.DataBase.NewsArticlesDataBase
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
@@ -24,7 +23,6 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_latest.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +41,6 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     lateinit var newsDao: NewsDAO
 
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,7 +106,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         navController.navigate(R.id.action_latestfragment_to_fullViewFragment,bundle)
 
-        val newsArticlesEntity = NewsArticlesEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val newsArticlesEntity = NewsArticlesEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -119,7 +122,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
 
         }
-
+        latestAccountIv.setOnClickListener {
+            navController.navigate(R.id.action_latestfragment_to_profileFragment)
+        }
 
     }
 
@@ -138,7 +143,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun addBookmarks(articlesItem: ArticlesItem) {
 
-        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -159,7 +170,13 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
 
-        val bookmarkEntity =BookmarkEntity(articlesItem.title,articlesItem.description,articlesItem.urlToImage,articlesItem.publishedAt,articlesItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            articlesItem.title,
+            articlesItem.description,
+            articlesItem.urlToImage,
+            articlesItem.publishedAt,
+            articlesItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -185,6 +202,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
     override fun selectArticleEntity(articlesEntity: NewsArticlesEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun shareArticle(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
 

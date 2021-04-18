@@ -11,8 +11,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:padding="@dimen/dp_12">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -26,8 +27,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_25"
                     android:layout_marginTop="@dimen/dp_10"
+                    android:drawableRight="@drawable/red_circle"
                     android:fontFamily="@font/lato_black"
-                    android:text="e-paper"
+                    android:text="@string/e_paper"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold" />
@@ -113,8 +115,8 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
             android:id="@+id/latestSwipeRefresh"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView

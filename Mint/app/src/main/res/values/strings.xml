@@ -22,7 +22,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
     <string name="email_settings">Email Settings</string>
+
+    <string name="e_paper">e-paper</string>
+    <string name="trending">Trending</string>
+
 
     <string-array name="news">
         <item>News</item>

@@ -36,6 +36,8 @@ interface OnItemClickListener {
 
     fun selectArticleEntity(articlesEntity: NewsArticlesEntity)
 
+    fun shareArticle(articlesItem: ArticlesItem)
+
 
 
 }

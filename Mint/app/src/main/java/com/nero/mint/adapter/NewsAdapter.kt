@@ -8,12 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.facebook.shimmer.Shimmer
 import com.nero.mint.R
 import com.nero.mint.data.remote.OnItemClickListener
 import com.nero.mint.newsPojo.ArticlesItem
-import kotlinx.android.synthetic.main.home_news_item_layout.*
-import org.jetbrains.anko.find
 
 
 class NewsAdapter(
@@ -52,8 +49,8 @@ class NewsAdapter(
 
 
             select.setOnClickListener(View.OnClickListener {
-                selected.visibility=View.VISIBLE
-                select.visibility= View.INVISIBLE
+                selected.visibility = View.VISIBLE
+                select.visibility = View.INVISIBLE
 
                 itemClickListener.addBookmarks(articlesList[position])
 
@@ -61,14 +58,16 @@ class NewsAdapter(
 
 
             selected.setOnClickListener(View.OnClickListener {
-                select.visibility=View.VISIBLE
-                selected.visibility= View.INVISIBLE
+                select.visibility = View.VISIBLE
+                selected.visibility = View.INVISIBLE
 
                 itemClickListener.deleteBookmarks(articlesList[position])
 
+
             })
-
-
+            homeNewsShareIv.setOnClickListener {
+                itemClickListener.shareArticle(articlesList[position])
+            }
 
         }
     }
@@ -79,11 +78,11 @@ class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     val Title = view.findViewById<TextView>(R.id.homeNewsTitleTv)
     val Description = view.findViewById<TextView>(R.id.homeNewsDescTv)
     val Date = view.findViewById<TextView>(R.id.homeNewsDateTv)
-
+    val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
     val readMore = view.findViewById<TextView>(R.id.homeNewsReadMoreTv)
     val select = view.findViewById<ImageView>(R.id.homeNewsSelectBookMarkIv)
     val selected = view.findViewById<ImageView>(R.id.homeNewsSelectedBookMarkIv)
 
-    val container = view.findViewById<LinearLayout>(R.id.homeLlContainer)
+    val homeNewsShareIv = view.findViewById<ImageView>(R.id.homeNewsShareIv)
 
 }
