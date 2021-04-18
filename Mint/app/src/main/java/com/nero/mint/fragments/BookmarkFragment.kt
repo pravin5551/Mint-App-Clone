@@ -1,5 +1,6 @@
 package com.nero.mint.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -24,23 +25,24 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
+import com.nero.mint.views.GoogleLogin
 import kotlinx.android.synthetic.main.fragment_bookmark.*
 
-class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListener {
+class BookmarkFragment : Fragment(R.layout.fragment_bookmark), OnItemClickListener {
 
     var bookmarksList = mutableListOf<BookmarkEntity>()
-    var historyList= mutableListOf<NewsArticlesEntity>()
-    lateinit var historyViewAdapter:HistoryAdapter
+    var historyList = mutableListOf<NewsArticlesEntity>()
+    lateinit var historyViewAdapter: HistoryAdapter
     lateinit var navController: NavController
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
-    lateinit var viewModel:MyViewModel
+    lateinit var viewModel: MyViewModel
     lateinit var viewAdapter: BookMarksShortAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController= Navigation.findNavController(view)
+        navController = Navigation.findNavController(view)
         MyReadsViewAllTv.setOnClickListener {
 
             navController.navigate(R.id.action_bookmarkFragment_to_bookMarkPreviewFragment)
@@ -55,8 +57,7 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListene
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MyViewModel::class.java)
 
 
-
-        val LlManager = StaggeredGridLayoutManager(1,0)
+        val LlManager = StaggeredGridLayoutManager(1, 0)
         bookMarksRecyclerView.layoutManager = LlManager
         viewAdapter = BookMarksShortAdapter(bookmarksList, this)
         bookMarksRecyclerView.adapter = viewAdapter
@@ -67,28 +68,33 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark),OnItemClickListene
             bookmarksList.addAll(it)
             viewAdapter.notifyDataSetChanged()
 
+            if (viewAdapter.getsize() == 0) {
+                bookMarksRecyclerView?.visibility = View.GONE
+                tvBookmark?.visibility = View.VISIBLE
+            } else {
+                bookMarksRecyclerView?.visibility = View.VISIBLE
+                tvBookmark?.visibility = View.GONE
+
+            }
         })
 
 
-
-
-        val llManager =LinearLayoutManager(requireContext())
+        val llManager = LinearLayoutManager(requireContext())
         savedReadsRecyclerView.layoutManager = llManager
         historyViewAdapter = HistoryAdapter(historyList, this)
         savedReadsRecyclerView.adapter = historyViewAdapter
 
         viewModel.getNewsArticlesEntity().observe(requireActivity(), Observer {
 
-
             historyList.clear()
             historyList.addAll(it)
             historyViewAdapter.notifyDataSetChanged()
-
-
-
         })
 
-
+        myReadsAccountIv.setOnClickListener {
+            val intent = Intent(activity, GoogleLogin::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {

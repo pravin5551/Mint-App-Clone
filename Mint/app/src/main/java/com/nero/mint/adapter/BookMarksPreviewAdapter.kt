@@ -10,12 +10,11 @@ import com.bumptech.glide.Glide
 import com.nero.mint.R
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.OnItemClickListener
-import com.nero.mint.fragments.BookMarkPreviewFragment
 
 class BookMarksPreviewAdapter(
     val bookmarksList: MutableList<BookmarkEntity>,
     val itemClickListener: OnItemClickListener
-) :RecyclerView.Adapter<BookMarksPreviewViewHolder>() {
+) : RecyclerView.Adapter<BookMarksPreviewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookMarksPreviewViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -60,9 +59,14 @@ class BookMarksPreviewAdapter(
 
 
     }
+
+    fun getsize(): Int {
+        return bookmarksList.size
+
+    }
 }
 
-class BookMarksPreviewViewHolder(val view: View):RecyclerView.ViewHolder(view){
+class BookMarksPreviewViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 
     val Image = view.findViewById<ImageView>(R.id.bookMarkedNewsDisplayIv)
@@ -71,9 +75,6 @@ class BookMarksPreviewViewHolder(val view: View):RecyclerView.ViewHolder(view){
     val Date = view.findViewById<TextView>(R.id.bookMarkedNewsDateTv)
     val readMore = view.findViewById<TextView>(R.id.bookMarkedReadMoreTv)
     val selected = view.findViewById<ImageView>(R.id.bookMarkedDeleteSelectedIv)
-
-
-
 
 
 }

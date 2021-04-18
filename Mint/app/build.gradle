@@ -110,5 +110,5 @@ dependencies {
     //circular img
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
+    implementation 'com.github.jumadeveloper:networkmanager:0.0.2'
 }

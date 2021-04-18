@@ -54,10 +54,9 @@ class BookMarksShortAdapter(
 
     }
 
-
-
-
-
+    fun getsize(): Int {
+        return bookmarksList.size
+    }
 
 
 }
