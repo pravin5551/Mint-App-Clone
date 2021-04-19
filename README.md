@@ -13,4 +13,5 @@ We have cloned the Mint Business News app, which brings you the best of news exp
 [Gradle](https://github.com/pravin5551/Mint-App-Clone/blob/Praneeth/Mint/app/build.gradle)
 
 -------------------  Video ---------------------
-![video](https://user-images.githubusercontent.com/38027375/115205513-46dadb80-a117-11eb-9ada-2ac84f5b269a.mp4)
+
+[video](https://user-images.githubusercontent.com/38027375/115205513-46dadb80-a117-11eb-9ada-2ac84f5b269a.mp4)
