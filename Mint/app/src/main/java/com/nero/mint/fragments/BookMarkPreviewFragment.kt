@@ -64,10 +64,11 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
             if (viewAdapter.getsize() == 0) {
                 bookMarksPreviewRecyclerview?.visibility = View.GONE
                 tvBookmark?.visibility = View.VISIBLE
+                animationView.visibility = View.VISIBLE
             } else {
                 bookMarksPreviewRecyclerview?.visibility = View.VISIBLE
                 tvBookmark?.visibility = View.GONE
-
+                animationView.visibility = View.GONE
             }
         })
 

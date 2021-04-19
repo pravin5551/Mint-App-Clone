@@ -68,7 +68,7 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
             articlesList.addAll(it.data?.data!!)
             viewAdapter.notifyDataSetChanged()
 
-            llProgressBar.visibility = View.GONE
+            llProgressBar?.visibility = View.GONE
 
         })
     }
