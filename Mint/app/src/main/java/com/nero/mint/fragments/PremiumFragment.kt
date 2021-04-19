@@ -2,6 +2,7 @@ package com.nero.mint.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -10,8 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nero.mint.R
-import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.PremiumAdapter
 import com.nero.mint.adapter.PremiumButtonsAdapter
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
@@ -25,9 +26,7 @@ import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_premium.*
-import kotlinx.android.synthetic.main.fragment_trending.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,6 +44,7 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
     lateinit var navController: NavController
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,8 +91,21 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
             viewAdapter.notifyDataSetChanged()
 
         })
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipePremium)
 
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.callPremiumApi().observe(requireActivity(), Observer {
 
+                swipeRefreshLayout.isRefreshing = true
+                articlesList.clear()
+                articlesList.addAll(it.data?.data!!)
+                viewAdapter.notifyDataSetChanged()
+                swipeRefreshLayout.isRefreshing = false
+
+            })
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
     override fun onSaved(articlesItem: ArticlesItem) {
@@ -100,6 +113,10 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
     }
 
     override fun selected(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
@@ -121,11 +138,17 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
 
         navController.navigate(R.id.action_premiumfragment_to_fullViewFragment, bundle)
 
-        val newsArticlesEntity= NewsArticlesEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val newsArticlesEntity = NewsArticlesEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
-        viewModel.addLatest(newsArticlesEntity)
+            viewModel.addLatest(newsArticlesEntity)
 
 
         }
@@ -140,7 +163,13 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
     override fun addBookmarks(dataItem: DataItem) {
 
 
-        val bookmarkEntity= BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -156,6 +185,10 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -163,7 +196,13 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
     override fun deleteBookmarks(dataItem: DataItem) {
 
 
-        val bookmarkEntity= BookmarkEntity(dataItem.title,dataItem.content,dataItem.imageUrl,dataItem.date,dataItem.url)
+        val bookmarkEntity = BookmarkEntity(
+            dataItem.title,
+            dataItem.content,
+            dataItem.imageUrl,
+            dataItem.date,
+            dataItem.url
+        )
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -173,10 +212,13 @@ class PremiumFragment : Fragment(R.layout.fragment_premium), OnItemClickListener
         }
 
 
-
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

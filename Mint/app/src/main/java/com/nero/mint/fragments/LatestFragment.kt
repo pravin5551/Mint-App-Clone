@@ -2,6 +2,7 @@ package com.nero.mint.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,9 +69,9 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
         viewModel.callLatestNews().observe(requireActivity(), Observer {
 
-            shimmerFrameLayoutLatestNews.stopShimmer()
-            shimmerFrameLayoutLatestNews.visibility = View.GONE
-            latestRecyclerview.visibility = View.VISIBLE
+            shimmerFrameLayoutLatestNews?.stopShimmer()
+            shimmerFrameLayoutLatestNews?.visibility = View.GONE
+            latestRecyclerview?.visibility = View.VISIBLE
             articlesList.clear()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
@@ -93,6 +94,8 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
 
 
             })
+            Toast.makeText(activity, "Refreshed", Toast.LENGTH_SHORT).show()
+
         }
     }
 
@@ -126,6 +129,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
             navController.navigate(R.id.action_latestfragment_to_profileFragment)
         }
 
+    }
+
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
     }
 
     override fun onButtonClicked(name: String) {
@@ -168,6 +175,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
 
         val bookmarkEntity = BookmarkEntity(
@@ -190,6 +201,10 @@ class LatestFragment : Fragment(R.layout.fragment_latest), OnItemClickListener {
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

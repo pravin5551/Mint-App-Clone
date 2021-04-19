@@ -121,6 +121,9 @@
         <action
             android:id="@+id/action_explorefragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_explorefragment_to_searchViewFragment"
+            app:destination="@id/searchViewFragment" />
 
     </fragment>
 
@@ -192,5 +195,13 @@
         android:name="com.nero.mint.views.GoogleLogin"
         android:label="activity_google_login"
         tools:layout="@layout/activity_google_login" />
+    <fragment
+        android:id="@+id/searchViewFragment"
+        android:name="com.nero.mint.fragments.SearchViewFragment"
+        android:label="SearchViewFragment" >
+        <action
+            android:id="@+id/action_searchViewFragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
 
 </navigation>

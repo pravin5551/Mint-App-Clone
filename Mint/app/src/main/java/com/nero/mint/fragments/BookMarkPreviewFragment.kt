@@ -1,9 +1,9 @@
 package com.nero.mint.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -32,14 +32,14 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
     lateinit var newsDao: NewsDAO
     lateinit var viewModel: MyViewModel
     lateinit var viewAdapter: BookMarksPreviewAdapter
-    lateinit var navController:NavController
+    lateinit var navController: NavController
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        navController=Navigation.findNavController(view)
+        navController = Navigation.findNavController(view)
 
         newsDb = NewsArticlesDataBase.getNewsArticlesDatabse(this.requireContext())
         newsDao = newsDb.getNewsArticlesDao()
@@ -60,7 +60,15 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
             bookmarksList.clear()
             bookmarksList.addAll(it)
             viewAdapter.notifyDataSetChanged()
+            llProgressBarBookmarkPreview?.visibility = View.GONE
+            if (viewAdapter.getsize() == 0) {
+                bookMarksPreviewRecyclerview?.visibility = View.GONE
+                tvBookmark?.visibility = View.VISIBLE
+            } else {
+                bookMarksPreviewRecyclerview?.visibility = View.VISIBLE
+                tvBookmark?.visibility = View.GONE
 
+            }
         })
 
 
@@ -71,6 +79,10 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
     }
 
     override fun selected(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
@@ -98,6 +110,10 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -107,6 +123,10 @@ class BookMarkPreviewFragment : Fragment(R.layout.fragment_book_mark_preview), O
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

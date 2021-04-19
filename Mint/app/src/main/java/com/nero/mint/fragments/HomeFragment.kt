@@ -2,6 +2,7 @@ package com.nero.mint.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.androidstudy.networkmanager.Tovuti
 import com.nero.mint.R
 import com.nero.mint.adapter.ButtonsAdapter
 import com.nero.mint.adapter.NewsAdapter
@@ -99,8 +101,26 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
             shrimmerAndRecyclerViewVisible()
             articlesList.addAll(it.data!!.articles)
             viewAdapter.notifyDataSetChanged()
-//            shimmer_view_container.stopShimmer()
         })
+
+        //network connection check
+
+        try {
+            Tovuti.from(context)?.monitor { connectionType, isConnected, isFast ->
+                if (isConnected) {
+                    Log.d("taggg", "network is back")
+                } else {
+//                    Snackbar.make(
+//                        view,
+//                        "No Internet",
+//                        Snackbar.LENGTH_SHORT
+//                    )
+//                        .show()
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(activity, "Check Internet Connection", Toast.LENGTH_SHORT).show()
+        }
 
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -129,9 +149,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     }
 
     private fun shrimmerAndRecyclerViewVisible() {
-        shimmerFrameLayout.stopShimmer()
-        shimmerFrameLayout.visibility = View.GONE
-        homeFragmentRecyclerView.visibility = View.VISIBLE
+        shimmerFrameLayout?.stopShimmer()
+        shimmerFrameLayout?.visibility = View.GONE
+        homeFragmentRecyclerView?.visibility = View.VISIBLE
         articlesList.clear()
     }
 
@@ -164,6 +184,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     }
 
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun onButtonClicked(name: String) {
 
         val bundle = bundleOf("newsItem" to name)
@@ -193,7 +217,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         )
 
         viewModel.addBookmarks(bookmarkEntity)
-
+        Toast.makeText(activity, "Added to My Read", Toast.LENGTH_SHORT).show()
     }
 
     override fun addBookmarks(dataItem: DataItem) {
@@ -201,6 +225,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     }
 
     override fun addBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
@@ -215,6 +243,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         )
 
         viewModel.deleteBookmarks(bookmarkEntity)
+        Toast.makeText(activity, "Bookmark Removed", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -223,6 +252,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
@@ -257,25 +290,35 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     override fun onResume() {
         super.onResume()
-        shimmerFrameLayout.startShimmer()
+        shimmerFrameLayout?.startShimmer()
 
     }
 
     override fun onStop() {
         super.onStop()
-        shimmerFrameLayout.stopShimmer()
+        try {
+
+            Tovuti.from(activity).stop();
+        } catch (e: Exception) {
+
+        }
+        shimmerFrameLayout?.stopShimmer()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout?.stopShimmer()
     }
 
     override fun onPause() {
         super.onPause()
-        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout?.stopShimmer()
     }
 
+    override fun onDestroy() {
+
+        super.onDestroy()
+    }
 
 }
 

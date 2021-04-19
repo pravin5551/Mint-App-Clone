@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/e_paperLBookmrksPreviewTv"
+                    android:id="@+id/e_paperSearchViewTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -34,19 +34,19 @@
 
 
                 <TextView
-                    android:id="@+id/bookmMarksPreviewTv"
+                    android:id="@+id/searchViewTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center_vertical"
-                    android:text="Bookmarks"
+                    android:text="LATEST"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_18"
                     android:textStyle="bold" />
 
 
                 <ImageView
-                    android:id="@+id/bookmarksPreviewAccountIv"
+                    android:id="@+id/searchViewAccountIv"
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
                     android:layout_alignParentRight="true"
@@ -67,25 +67,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchFullViewRecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
         <include
-            android:id="@+id/llProgressBarBookmarkPreview"
+            android:id="@+id/lLProgressBar"
             layout="@layout/progress_bar"
             android:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookMarksPreviewRecyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tvBookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/no_bookmarks_available"
-            android:textSize="@dimen/sp_20"
-            android:textStyle="bold|italic" />
 
     </LinearLayout>
 

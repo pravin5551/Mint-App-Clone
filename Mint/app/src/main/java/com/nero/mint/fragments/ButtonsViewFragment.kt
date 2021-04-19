@@ -1,9 +1,7 @@
 package com.nero.mint.fragments
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,6 +23,7 @@ import com.nero.mint.repository.Repository
 import com.nero.mint.viewModel.MyViewModel
 import com.nero.mint.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_buttons_view.*
+import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +37,6 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
     lateinit var newsDb: NewsArticlesDataBase
     lateinit var newsDao: NewsDAO
     lateinit var navController: NavController
-    lateinit var progressBar: ProgressBar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,8 +60,6 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
         viewAdapter = ButtonsViewAdapter(articlesList, this)
         buttonsFullViewRecyclerview.adapter = viewAdapter
 
-
-
         viewModel.callSearchButtonNews(search).observe(requireActivity(), Observer {
 
 
@@ -72,6 +68,7 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
             articlesList.addAll(it.data?.data!!)
             viewAdapter.notifyDataSetChanged()
 
+            llProgressBar.visibility = View.GONE
 
         })
     }
@@ -81,6 +78,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
     }
 
     override fun selected(articlesItem: ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
@@ -137,6 +138,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -157,6 +162,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 
