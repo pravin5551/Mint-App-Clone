@@ -25,5 +25,14 @@ class RetrofitGenerator {
             return retrofitBuilder.build()
         }
 
+        fun getRetrofitInstance(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl("https://newsapi.org")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build())
+                .build()
+        }
+
+
     }
 }
