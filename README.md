@@ -14,4 +14,4 @@ We have cloned the Mint Business News app, which brings you the best of news exp
 
 -------------------  Video ---------------------
 
-[video](https://user-images.githubusercontent.com/38027375/115205513-46dadb80-a117-11eb-9ada-2ac84f5b269a.mp4)
+[video](https://user-images.githubusercontent.com/38027375/115206134-e8622d00-a117-11eb-92f6-1c7970c020b8.mp4)
