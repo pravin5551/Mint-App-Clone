@@ -105,6 +105,10 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark), OnItemClickListen
         TODO("Not yet implemented")
     }
 
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun onButtonClicked(name: String) {
         TODO("Not yet implemented")
     }
@@ -129,6 +133,10 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark), OnItemClickListen
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -138,6 +146,10 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark), OnItemClickListen
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

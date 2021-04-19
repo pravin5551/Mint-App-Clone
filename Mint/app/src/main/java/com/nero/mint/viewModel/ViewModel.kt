@@ -7,6 +7,7 @@ import androidx.lifecycle.liveData
 import com.nero.mint.data.remote.DataBase.BookmarkEntity
 import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
 import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
+import com.nero.mint.data.remote.SearchPojo.SearchResponse
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
@@ -126,6 +127,20 @@ class MyViewModel(val repository: Repository) : ViewModel() {
 
         return repository.getNewsBookMarksEntity()
     }
+
+
+    fun callSearchApi(name:String): LiveData<RetrofitNetworkRequestHandler.Resource<SearchResponse>>{
+
+        return liveData(Dispatchers.IO) {
+            val result=   repository.callSearchApi(name)
+
+            emit(result)
+
+        }
+
+    }
+
+
 
 
 }

@@ -8,6 +8,7 @@ import com.nero.mint.data.remote.DataBase.NewsArticlesEntity
 import com.nero.mint.data.remote.DataBase.NewsDAO
 import com.nero.mint.data.remote.RetrofitGenerator
 import com.nero.mint.data.remote.RetrofitNetworkRequestHandler
+import com.nero.mint.data.remote.SearchPojo.SearchResponse
 import com.nero.mint.newsPojo.NewArticlePojo.NewArticlesResponse
 import com.nero.mint.newsPojo.NewsResponse
 import com.nero.mint.newsPojo.PremiumResponse
@@ -24,10 +25,11 @@ class Repository(val newsDAO: NewsDAO) {
     val Content_type = "application/json"
     val source = "politics"
     val handler = RetrofitNetworkRequestHandler.ResponseHandler()
-    val apiKey = "0b43be1f3dc84b2492d6691164b3edac"
-    val sortBy = "Popularity"
-    val from = "recent"
-    val qlatest = "latest"
+    val apiKey = "ee8546187cb24d5ab6df03f87113153a"
+    val sortBy="Popularity"
+    val from ="recent"
+
+    val apiClient2= RetrofitGenerator.getRetrofitInstance().create(ApiClient::class.java)
 
 
     val buttons = Buttons()
@@ -153,6 +155,25 @@ class Repository(val newsDAO: NewsDAO) {
         return newsDAO.getArticles()
 
     }
+
+
+    suspend fun callSearchApi(name: String): RetrofitNetworkRequestHandler.Resource<SearchResponse> {
+
+        val result = apiClient2.callSearch(Content_type,name,from ,sortBy,apiKey)
+
+        try {
+
+            return handler.handleSuccess(result)
+
+        } catch (e: java.lang.Exception) {
+
+            return handler.handleException(e)
+        }
+
+    }
+
+
+
 
 
     fun getNewsBookMarksEntity(): LiveData<List<BookmarkEntity>> {
