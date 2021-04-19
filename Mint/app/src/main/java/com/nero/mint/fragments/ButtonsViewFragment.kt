@@ -81,6 +81,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
         TODO("Not yet implemented")
     }
 
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun onButtonClicked(name: String) {
         TODO("Not yet implemented")
     }
@@ -134,6 +138,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -154,6 +162,10 @@ class ButtonsViewFragment : Fragment(R.layout.fragment_buttons_view), OnItemClic
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

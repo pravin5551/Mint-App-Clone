@@ -139,6 +139,10 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
         TODO("Not yet implemented")
     }
 
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun onButtonClicked(name: String) {
 
         val bundle = bundleOf("newsItem" to name)
@@ -227,6 +231,10 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
 
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         TODO("Not yet implemented")
     }
@@ -246,6 +254,10 @@ class TrendingFragment : Fragment(R.layout.fragment_trending), OnItemClickListen
 
         viewModel.deleteBookmarks(bookmarkEntity)
 
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
     }
 
     override fun deleteBookMarkEntity(bookmarkEntity: BookmarkEntity) {

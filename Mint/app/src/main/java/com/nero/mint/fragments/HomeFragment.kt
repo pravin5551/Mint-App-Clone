@@ -184,6 +184,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
 
     }
 
+    override fun onselected(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun onButtonClicked(name: String) {
 
         val bundle = bundleOf("newsItem" to name)
@@ -224,6 +228,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
         TODO("Not yet implemented")
     }
 
+    override fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
+        TODO("Not yet implemented")
+    }
+
     override fun deleteBookmarks(articlesItem: ArticlesItem) {
         val bookmarkEntity = BookmarkEntity(
             articlesItem.title,
@@ -244,6 +252,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnItemClickListener {
     }
 
     override fun deleteBookmarks(newsArticlesResponse: NewArticlesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem) {
         TODO("Not yet implemented")
     }
 

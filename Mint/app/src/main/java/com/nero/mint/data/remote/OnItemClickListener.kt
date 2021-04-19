@@ -10,6 +10,7 @@ interface OnItemClickListener {
     fun onSaved(articlesItem: ArticlesItem)
 
     fun selected(articlesItem: ArticlesItem)
+    fun onselected (articlesItem : com.nero.mint.data.remote.SearchPojo.ArticlesItem)
 
     fun onButtonClicked(name: String)
 
@@ -20,11 +21,15 @@ interface OnItemClickListener {
 
     fun addBookmarks(articlesItem: ArticlesItem)
 
+    fun addBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem)
+
     fun addBookmarks(dataItem: DataItem)
 
     fun addBookmarks(newsArticlesResponse: NewArticlesResponse)
 
     fun deleteBookmarks(articlesItem: ArticlesItem)
+
+    fun deleteBookMark(articlesItem: com.nero.mint.data.remote.SearchPojo.ArticlesItem)
 
     fun deleteBookmarks(dataItem: DataItem)
 
