@@ -100,8 +100,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/dp_20"
                     android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
-
-
             </RelativeLayout>
         </LinearLayout>
 
