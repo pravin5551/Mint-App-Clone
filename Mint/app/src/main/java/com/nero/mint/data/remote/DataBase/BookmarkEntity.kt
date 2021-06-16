@@ -5,16 +5,18 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Mint_Bookmarks")
-class BookmarkEntity (@ColumnInfo(name = "Title") var Title: String,
+class BookmarkEntity(
+    @ColumnInfo(name = "Title") var Title: String,
     @ColumnInfo(name = "Description") var Description: String,
     @ColumnInfo(name = "Image") var Image: String,
     @ColumnInfo(name = "Date") var Date: String,
-    @ColumnInfo(name = "Url") var Url: String, ) {
+    @ColumnInfo(name = "Url") var Url: String
+) {
 
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "Id")
-        var Id: Int? = null
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "Id")
+    var Id: Int? = null
 
 
-    }
+}
 
